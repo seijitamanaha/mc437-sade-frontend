@@ -1,0 +1,19 @@
+{
+  "name": "sade",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Sistema de Acompanhamento de Desenvolvedores Externos",
+  "homepage": "https://github.com/rodrigofortlima/mc437",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "http-server": "^0.9.0"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+
+    "prestart": "npm install",
+    "start": "http-server -a localhost -p 3000 -c-1 ./app"
+
+  }
+}
