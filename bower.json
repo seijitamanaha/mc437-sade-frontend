@@ -2,7 +2,7 @@
   "name": "sade",
   "description": "Sistema de Acompanhamento de Desenvolvedores Externos",
   "version": "0.0.0",
-  "homepage": "https://github.com/rodrigofortlima/mc437",
+  "homepage": "https://github.com/seijitamanaha/mc437-sade-frontend",
   "license": "MIT",
   "private": true,
   "dependencies": {

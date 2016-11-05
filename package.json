@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "description": "Sistema de Acompanhamento de Desenvolvedores Externos",
-  "homepage": "https://github.com/rodrigofortlima/mc437",
+  "homepage": "https://github.com/seijitamanaha/mc437-sade-frontend",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.7.7",
@@ -11,9 +11,11 @@
   },
   "scripts": {
     "postinstall": "bower install",
-
     "prestart": "npm install",
     "start": "http-server -a localhost -p 3000 -c-1 ./app"
-
+  },
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2"
   }
 }
