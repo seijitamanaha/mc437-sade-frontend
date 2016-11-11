@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+
+      <div class="panel panel-default" style="margin-top: 40px;">
+        <div class="panel-heading">
+          <h3 class="panel-title">Entrar</h3>
+        </div>
+        <div class="panel-body">
+          <form role="form" ng-submit="login(input.username, input.password)">
+            <fieldset>
+              <div class="form-group">
+                <input class="form-control" placeholder="Usuário" name="username" type="text" autofocus="" id="username" ng-model="input.username">
+              </div>
+              <div class="form-group">
+                <input class="form-control" placeholder="Senha" name="password" type="password" value="" id="password" ng-model="input.password">
+              </div>
+              <button type="submit" class="btn btn-block btn-success">Entrar</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+
+      <div ng-if="message.length" class="alert alert-danger" role="alert" id="message" ng-bind="message"></div>
+
+    </div>
+
+  </div>
+</div>
