@@ -1,10 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="">
-
-            <div ng-if="message.length" class="alert alert-danger" role="alert" id="message" ng-bind="message"></div>
-
-            <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
+        <div class="col-xs-12" style="padding-top: 40px;">
 
             <div class="container">
                 <div class="process">
@@ -13,7 +9,7 @@
                             <button type="button" ng-class="(step >= 1) ? 'btn-success' : 'btn-default'"
                                     class="btn btn-circle" disabled="disabled">
                                 <i class="fa fa-envelope-o fa-3x"></i></button>
-                            <p>Pré cadastro</p>
+                            <p>Pré-cadastro</p>
                         </div>
                         <div class="process-step">
                             <button type="button" ng-class="(step >= 2) ? 'btn-success' : 'btn-default'"
@@ -31,7 +27,7 @@
                             <button type="button" ng-class="(step == 4) ? 'btn-success' : 'btn-default'"
                                     class="btn btn-circle" disabled="disabled">
                                 <i class="fa fa-handshake-o fa-3x"></i></button>
-                            <p>Donezo!</p>
+                            <p>Done!</p>
                         </div>
                     </div>
                 </div>
@@ -44,7 +40,7 @@
                         <div class="row" ng-if="step == 1">
 
                             <!-- Form Name -->
-                            <legend>Pré cadastro</legend>
+                            <legend>Pré-cadastro</legend>
 
                             <div class="form-group">
                                 <label class="control-label" for="name">Nome completo</label>
@@ -58,7 +54,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="email">E-mail</label>
                                 <div class="controls">
-                                    <input id="email" name="email" type="text" placeholder="E-mail"
+                                    <input id="email" name="email" type="email" placeholder="E-mail"
                                            ng-model="input.email" class="form-control required">
 
                                 </div>
@@ -67,7 +63,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="email2">Confirmação de e-mail</label>
                                 <div class="controls">
-                                    <input id="email2" name="email2" type="text" placeholder="Confirmação de e-mail"
+                                    <input id="email2" name="email2" type="email" placeholder="Confirmação de e-mail"
                                            ng-model="input.email2" class="form-control required">
 
                                 </div>
@@ -78,7 +74,7 @@
                                 <label class="control-label" for="cpf">CPF</label>
                                 <div class="controls">
                                     <input id="cpf" name="cpf" type="text"
-                                           ng-model="input.cpf" placeholder="CPF" class="form-control required">
+                                           ng-model="input.cpf" placeholder="CPF" class="form-control required" ui-br-cpf-mask="">
 
                                 </div>
                             </div>
@@ -86,15 +82,6 @@
                         </div>
 
                         <div class="row" ng-if="step == 2">
-
-                            <!-- Text input-->
-                            <!--<div class="form-group">
-                                <div class="controls">
-                                    <img src="http://api.randomuser.me/portraits/women/76.jpg" alt="Glenda Patterson"
-                                         class="img-responsive img-circle" width="70px"/>
-                                    <a href="#">Change profile photo</a>
-                                </div>
-                            </div>-->
 
                             <div class="form-group">
                                 <label class="control-label" for="senha">Senha</label>
