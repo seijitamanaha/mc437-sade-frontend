@@ -1,3 +1,36 @@
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#slider").slider({
+            range: "min",
+            animate: false,
+            value: 0,
+            min: 0,
+            max: 10,
+            step: 1,
+            slide: function (event, ui) {
+                update(1, ui.value); //changed
+            }
+        });
+
+        //Added, set initial value.
+        $("#amount").val(0);
+
+        update();
+    });
+
+    //changed. now with parameter
+    function update(slider, val) {
+        //changed. Now, directly take value from ui.value. if not set (initial, will use current value.)
+        var $amount = slider == 1 ? val : $("#amount").val();
+
+        $("#amount").val($amount);
+
+        $('#slider a').html('<label>' + $amount + '</label><div class="ui-slider-label-inner"></div>');
+    }
+
+</script>
+
 <div class="container">
     <div class="row">
         <div class="col-xs-12" style="padding-top: 40px;">
@@ -74,7 +107,8 @@
                                 <label class="control-label" for="cpf">CPF</label>
                                 <div class="controls">
                                     <input id="cpf" name="cpf" type="text"
-                                           ng-model="input.cpf" placeholder="CPF" class="form-control required" ui-br-cpf-mask="">
+                                           ng-model="input.cpf" placeholder="CPF" class="form-control required"
+                                           ui-br-cpf-mask="">
 
                                 </div>
                             </div>
@@ -82,6 +116,8 @@
                         </div>
 
                         <div class="row" ng-if="step == 2">
+
+                            <legend>Dados pessoais</legend>
 
                             <div class="form-group">
                                 <label class="control-label" for="senha">Senha</label>
@@ -176,18 +212,34 @@
                                 <label class="control-label" for="conheceu">Como conheceu o SADE</label>
                                 <div class="controls">
                                     <textarea id="conheceu" name="conheceu" maxlength="300" rows="3"
-                                           ng-model="input.conheceu" placeholder="Descreva como conheceu o SADE"
-                                           class="form-control required"></textarea>
+                                              ng-model="input.conheceu" placeholder="Descreva como conheceu o SADE"
+                                              class="form-control required"></textarea>
 
                                 </div>
                             </div>
 
                         </div>
 
-                        <div ng-if="step == 3">
-                            
+                        <div ng-if="step == 3"  class="container">
+                            <div class="price-box">
+                                <legend>Habilidades</legend>
 
+                                <div class="form-pricing form-horizontal" ng-repeat="skill in skills.slice(1,2)">
+                                    <div class="price-slider">
+                                        <h4 class="great">{{skill.name}}</h4>
+
+                                        <div class="col-sm-12">
+                                            <div id="slider"></div>
+                                        </div>
+
+                                        <input type="hidden" id="amount" class="form-control"/>
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
+
 
                         <div class="row">
                             <div class="form-group">

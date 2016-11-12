@@ -4,7 +4,7 @@ angular.module('sade')
 
   .controller('SignupCtrl', ['$scope', function ($scope) {
 
-    $scope.step = 1;
+    $scope.step = 3;
 
     $scope.next = function () {
       $scope.step += 1;
@@ -29,7 +29,7 @@ angular.module('sade')
     $scope.skills = [
       {
         id: 1,
-        name: 'Java'
+        name: 'C#'
       },
       {
         id: 2,
@@ -37,7 +37,7 @@ angular.module('sade')
       },
       {
         id: 3,
-        name: 'Java'
+        name: 'Ruby'
       }
     ];
 
