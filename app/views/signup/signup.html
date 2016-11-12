@@ -35,7 +35,7 @@
 
             <div class="panel-body">
                 <form role="form" ng-if="step < 4"
-                      ng-submit="signup(input.name, input.email, input.cpf, input.senha, input.senha2)">
+                      ng-submit="signup(input)">
                     <fieldset>
                         <div class="row" ng-if="step == 1">
 
@@ -102,186 +102,90 @@
                                 </div>
                             </div>
 
-                            <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="control-label" for="selectbasic">Company</label>
+                                <label class="control-label" for="rg">Número do RG</label>
                                 <div class="controls">
-                                    <select id="selectbasic" name="senha" class="form-control required">
-                                        <option>LI Company Imported 1</option>
-                                        <option>LI Company Imported 2</option>
-                                    </select>
+                                    <input id="rg" name="rg" type="number"
+                                           ng-model="input.rg" placeholder="Número do RG"
+                                           class="form-control required">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="tel">Telefone</label>
+                                <div class="controls">
+                                    <input id="tel" name="tel" type="text"
+                                           ng-model="input.tel" placeholder="Telefone"
+                                           class="form-control required">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="celular">Celular</label>
+                                <div class="controls">
+                                    <input id="celular" name="celular" type="text"
+                                           ng-model="input.celular" placeholder="Celular"
+                                           class="form-control required">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="endereco">Endereço</label>
+                                <div class="controls">
+                                    <input id="endereco" name="endereco" type="text"
+                                           ng-model="input.endereco" placeholder="Endereço"
+                                           class="form-control required">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="instituicao">Instituição</label>
+                                <div class="controls">
+                                    <input id="instituicao" name="instituicao" type="text"
+                                           ng-model="input.instituicao" placeholder="Instituição"
+                                           class="form-control required">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="curso">Curso</label>
+                                <div class="controls">
+                                    <input id="curso" name="curso" type="text"
+                                           ng-model="input.curso" placeholder="Curso"
+                                           class="form-control required">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="curriculo">Link para download do currículo</label>
+                                <div class="controls">
+                                    <input id="curriculo" name="curriculo" type="text"
+                                           ng-model="input.curriculo" placeholder="Link para download do currículo"
+                                           class="form-control required">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="conheceu">Como conheceu o SADE</label>
+                                <div class="controls">
+                                    <textarea id="conheceu" name="conheceu" maxlength="300" rows="3"
+                                           ng-model="input.conheceu" placeholder="Descreva como conheceu o SADE"
+                                           class="form-control required"></textarea>
+
                                 </div>
                             </div>
 
                         </div>
 
                         <div ng-if="step == 3">
-                            <!-- Office select only appears when company type is undefined in the vendori database-->
-                            <div class="form-group">
-                                <label class="control-label" for="selectbasic">Office</label>
-                                <div class="controls">
-                                    <select id="selectbasic" name="selectbasic" class="form-control required">
-                                        <option>LI Import Office 1 (city)</option>
-                                        <option>LI Import Office 2 (city)</option>
-                                        <option>LI Import Office 3 (city)</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="control-label" for="textinput">Department</label>
-                                <div class="controls">
-                                    <input id="textinput" name="textinput" type="text"
-                                           placeholder="(Autocomplete filtered by current company)"
-                                           class="form-control required"
-                                           title="Find other vendori users in your department.">
-
-                                </div>
-                            </div>
-
-                            <!-- User type only appears when company type is undefined in the vendori database-->
-                            <div class="form-group">
-                                <label class="control-label" for="selectbasic">User Type</label>
-                                <div class="controls">
-                                    <select id="selectbasic" name="selectbasic" class="form-control required">
-                                        <!-- There are still only 3 company types ID(marketer, agency, vendor) the front end uses labels to help users determine the best fit.-->
-                                        <option id="marketer">Marketer</option>
-                                        <option id="agency">Agency</option>
-                                        <option id="agency">Media Agency</option>
-                                        <option id="vendor">Vendor (Publishers, Networks, Research, Tech etc.)</option>
-                                        <option id="other">Trade Association</option>
-                                        <option id="other">Press</option>
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Select Job Function (Values change depending on user type) -->
-                            <div class="form-group">
-                                <label class="control-label" for="selectbasic">Job Function</label>
-                                <div class="controls">
-                                    <select id="selectbasic" name="selectbasic" class="form-control required">
-                                        <!-- The signup form uses a select for job function to determine text on signup success page. It's still an auto complete open field on user settings.-->
-                                        <option>Vendor: Marketing</option>
-                                        <option>Vendor: Inside Sales</option>
-                                        <option>Vendor: Outside Sales</option>
-                                        <option>Vendor: Account Management</option>
-                                        <option>Marketer: Brand Management and Marketing Direction</option>
-                                        <option>Marketer: Marketing support: Insights, Innovation, Agency Relations,
-                                            Procurement, etc.
-                                        </option>
-                                        <option>Agency: Account Management</option>
-                                        <option>Agency: Strategy and Planning</option>
-                                        <option>Agency: Research</option>
-                                        <option>Agency: Creative</option>
-                                        <option>Agency: External Marketing</option>
-                                        <option>Agency: New Business</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="control-label" for="textinput">Mobile phone</label>
-                                <div class="controls">
-                                    <input id="textinput" name="textinput" type="text" placeholder="placeholder"
-                                           class="form-control required"
-                                           title="Your mobile phone is only visible to your current partners with permission.">
-
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="control-label" for="textinput">Work phone</label>
-                                <div class="controls">
-                                    <input id="textinput" name="textinput" type="text" placeholder="placeholder"
-                                           class="form-control required"
-                                           title="Your work phone is only visible to your current partners with permission.">
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="control-label" for="textinput">Work Email</label>
-                                <div class="controls">
-                                    <input id="textinput" name="textinput" type="text" placeholder="(LI Import)"
-                                           class="form-control" disabled>
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="control-label" for="textinput">Backup Email</label>
-                                <div class="controls">
-                                    <input id="textinput" name="textinput" type="text" placeholder="(LI Import)"
-                                           class="form-control required">
-                                    <p class="help-block">for your security</p>
-                                </div>
-                            </div>
-
-                            <!-- Multiple Radios (inline) -->
-                            <div class="form-group">
-                                <label class="control-label" for="radios">Phone contact preference</label>
-                                <div class="controls">
-                                    <label class="radio inline" for="radios-0">
-                                        <input type="radio" name="radios" id="radios-0" value="Mobile Phone">
-                                        Mobile Phone
-                                    </label>
-                                    <label class="radio inline" for="radios-1">
-                                        <input type="radio" name="radios" id="radios-1" value="Work Phone"
-                                               checked="checked">
-                                        Work Phone
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- User can enter brands not in Vendori database. Autocomplete with brands. -->
-                            <div class="form-group">
-                                <label class="control-label" for="textarea">Brands I work on</label>
-                                <div class="controls">
-                                <textarea id="textarea" name="textarea" class="one-required"
-                                          title="The more brands you add the more relevant your site experience will be."></textarea>
-                                </div>
-                            </div>
-
-                            <!-- User can enter companies not in Vendori database. Autocomplete with companies type = agencies -->
-                            <div class="form-group">
-                                <label class="control-label" for="textarea">Agencies I work with</label>
-                                <div class="controls">
-                                <textarea id="textarea" name="textarea" class="one-required"
-                                          title="Add all of your agency partners to get their latest decks, videos and thought leadership."></textarea>
-                                </div>
-                            </div>
-
-                            <!-- User can enter companies not in Vendori database. Autocomplete with companies type = vendor -->
-                            <div class="form-group">
-                                <label class="control-label" for="textarea">Vendors (and Publishers) I work with</label>
-                                <div class="controls">
-                                <textarea id="textarea" name="textarea" class="one-required"
-                                          title="Add all of your vendors so you don't miss out on any new opportunities."></textarea>
-                                </div>
-                            </div>
-
-                            <!-- User can enter solutions not in Vendori database. Autocomplete with solutions -->
-                            <div class="form-group">
-                                <label class="control-label" for="textarea">3+ solutions I need (or provide) for
-                                    brands</label>
-                                <div class="controls">
-                                <textarea id="textarea" name="textarea" class="three-required"
-                                          title="Solutions help match you to new opportunities in your area of focus."></textarea>
-                                </div>
-                            </div>
-
-                            <!-- User can enter channels not in Vendori database. Autocomplete with channels. -->
-                            <div class="form-group">
-                                <label class="control-label" for="textarea">3+ channels I activate in for brands</label>
-                                <div class="controls">
-                                <textarea id="textarea" name="textarea" class="three-required"
-                                          title="Channels help match you to new opportunities in your area of focus."></textarea>
-                                </div>
-                            </div>
+                            
 
                         </div>
 
