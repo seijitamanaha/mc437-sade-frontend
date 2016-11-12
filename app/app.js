@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('sade', [
-  'sade.rest',
-  'ngRoute'
+    'ngRoute',
+    'ngStorage',
+    'ui.utils.masks',
+    'sade.rest',
+    'sade.user'
   ])
   .config(['$locationProvider', '$routeProvider',
     function ($locationProvider, $routeProvider) {

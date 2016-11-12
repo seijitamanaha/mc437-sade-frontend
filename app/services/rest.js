@@ -17,7 +17,7 @@ angular
 
         opt = opt || {};
         /** API URL Definition */
-        opt.base_url = opt.base_url || 'https://jsonplaceholder.typicode.com';
+        opt.base_url = opt.base_url || 'http://177.220.85.233:8437/sade/test/helloFull';
 
         var cache = {};
 

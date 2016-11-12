@@ -20,7 +20,7 @@
 
 </head>
 
-<body>
+<body ng-controller="LayoutCtrl">
 
   <!--Header-->
   <ng-include src="'views/layout/header.html'"></ng-include>
@@ -40,12 +40,16 @@
   <!--AngularJS-->
   <script src="components/angular/angular.min.js"></script>
   <script src="components/angular-route/angular-route.min.js"></script>
+  <script src="components/ngstorage/ngStorage.min.js"></script>
+  <script src="components/angular-input-masks/angular-input-masks-standalone.min.js"></script>
 
   <!--Main-->
   <script src="app.js"></script>
 
   <!--Services-->
   <script src="services/rest.js"></script>
+  <script src="services/user.js"></script>
+  <!--<script src="services/list.js"></script>-->
 
   <!--Controllers-->
   <script src="views/layout/layout.js"></script>

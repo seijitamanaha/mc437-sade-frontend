@@ -2,16 +2,28 @@
 
 angular.module('sade')
 
-.controller('LoginCtrl', ['$scope', function($scope) {
-  
+.controller('LoginCtrl', ['$scope', '$User', function($scope, $User) {
+
   $scope.message = '';
+  $scope.loading = false;
 
   $scope.login = function(username, password) {
-    console.log('submitted login form');
+
+    $scope.message = '';
+    $scope.loading = true;
     
-    $scope.message = 'Usuário ou senha incorretos';
-    
-    // $scope.message = 'Login efetuado';
+    var data = {
+      username: username,
+      password: password
+    };
+
+    $User.login(data).then(function() {
+      $scope.loading = false;
+      $scope.path('/lista');
+    }).catch(function () {
+      $scope.loading = false;
+      $scope.message = 'Usuário ou senha incorretos';
+    });
     
   }
 
