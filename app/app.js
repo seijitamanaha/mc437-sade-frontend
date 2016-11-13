@@ -4,6 +4,7 @@ angular.module('sade', [
     'ngRoute',
     'ngStorage',
     'ui.utils.masks',
+    'rzModule',
     'sade.rest',
     'sade.user'
   ])

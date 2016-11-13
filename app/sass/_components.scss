@@ -1,0 +1,67 @@
+.btn {
+  &-primary {
+    background: $color-brand-primary;
+    border-color: $color-brand-primary;
+    color: $color-white;
+    &:hover,
+    &:focus {
+      background-color: darken($color-brand-primary, 10%);
+      border-color: darken($color-brand-primary, 12%);
+      color: $color-white;
+    }
+    &[disabled='disabled'] {
+      opacity: 1;
+      background-color: $color-grey;
+      border-color: $color-grey;
+      color: $color-white;
+      &:hover,
+      &:focus {
+        background-color: $color-grey;
+        border-color: $color-grey;
+        color: $color-white;
+      }
+    }
+  }
+  &-primary:active {
+    &:hover,
+    &:focus {
+      background-color: darken($color-brand-primary, 10%);
+      border-color: darken($color-brand-primary, 12%);
+      color: $color-white;
+    }
+  }
+  &-success {
+    &:hover,
+    &:focus {
+      background-color: darken($color-success, 4%);
+      border-color: darken($color-success, 4%);
+    }
+    &[disabled='disabled'] {
+      opacity: 1;
+      background-color: lighten($color-success, 10%);
+      border-color: lighten($color-success, 10%);
+      &:hover,
+      &:focus {
+        background-color: lighten($color-success, 10%);
+        border-color: lighten($color-success, 10%);
+      }
+    }
+  }
+  &-danger {
+    &:hover,
+    &:focus {
+      background-color: darken($color-danger, 4%);
+      border-color: darken($color-danger, 4%);
+    }
+    &[disabled='disabled'] {
+      opacity: 1;
+      background-color: lighten($color-danger, 10%);
+      border-color: lighten($color-danger, 10%);
+      &:hover,
+      &:focus {
+        background-color: lighten($color-danger, 10%);
+        border-color: lighten($color-danger, 10%);
+      }
+    }
+  }
+}

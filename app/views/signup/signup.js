@@ -4,10 +4,13 @@ angular.module('sade')
 
   .controller('SignupCtrl', ['$scope', function ($scope) {
 
-    $scope.step = 3;
+    $scope.step = 1;
 
     $scope.next = function () {
       $scope.step += 1;
+      if($scope.step == 3) {
+        setSliders();
+      }
     };
 
     $scope.previous = function () {
@@ -40,5 +43,13 @@ angular.module('sade')
         name: 'Ruby'
       }
     ];
+
+    $scope.skills = $scope.skills.map(function(x){
+      return {
+        id: x.id,
+        name: x.name,
+        value: 10
+      }
+    });
 
   }]);

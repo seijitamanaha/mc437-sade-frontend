@@ -1,37 +1,4 @@
-<script type="text/javascript">
-
-    $(document).ready(function () {
-        $("#slider").slider({
-            range: "min",
-            animate: false,
-            value: 0,
-            min: 0,
-            max: 10,
-            step: 1,
-            slide: function (event, ui) {
-                update(1, ui.value); //changed
-            }
-        });
-
-        //Added, set initial value.
-        $("#amount").val(0);
-
-        update();
-    });
-
-    //changed. now with parameter
-    function update(slider, val) {
-        //changed. Now, directly take value from ui.value. if not set (initial, will use current value.)
-        var $amount = slider == 1 ? val : $("#amount").val();
-
-        $("#amount").val($amount);
-
-        $('#slider a').html('<label>' + $amount + '</label><div class="ui-slider-label-inner"></div>');
-    }
-
-</script>
-
-<div class="container">
+<div class="container signup-form">
     <div class="row">
         <div class="col-xs-12" style="padding-top: 40px;">
 
@@ -41,26 +8,26 @@
                         <div class="process-step">
                             <button type="button" ng-class="(step >= 1) ? 'btn-success' : 'btn-default'"
                                     class="btn btn-circle" disabled="disabled">
-                                <i class="fa fa-envelope-o fa-3x"></i></button>
-                            <p>Pré-cadastro</p>
+                                <i class="fa fa-envelope-o"></i></button>
+                            <p class="hidden-xs">Pré-cadastro</p>
                         </div>
                         <div class="process-step">
                             <button type="button" ng-class="(step >= 2) ? 'btn-success' : 'btn-default'"
                                     class="btn btn-circle" disabled="disabled">
-                                <i class="fa fa-user fa-3x"></i></button>
-                            <p>Dados pessoais</p>
+                                <i class="fa fa-user"></i></button>
+                            <p class="hidden-xs">Dados pessoais</p>
                         </div>
                         <div class="process-step">
                             <button type="button" ng-class="(step >= 3) ? 'btn-success' : 'btn-default'"
                                     class="btn btn-circle" disabled="disabled">
-                                <i class="fa fa-linkedin fa-3x"></i></button>
-                            <p>Habilidades</p>
+                                <i class="fa fa-linkedin"></i></button>
+                            <p class="hidden-xs">Habilidades</p>
                         </div>
                         <div class="process-step">
                             <button type="button" ng-class="(step == 4) ? 'btn-success' : 'btn-default'"
                                     class="btn btn-circle" disabled="disabled">
-                                <i class="fa fa-handshake-o fa-3x"></i></button>
-                            <p>Done!</p>
+                                <i class="fa fa-handshake-o"></i></button>
+                            <p class="hidden-xs">Done!</p>
                         </div>
                     </div>
                 </div>
@@ -72,10 +39,9 @@
                     <fieldset>
                         <div class="row" ng-if="step == 1">
 
-                            <!-- Form Name -->
-                            <legend>Pré-cadastro</legend>
+                            <h3>Pré-cadastro</h3>
 
-                            <div class="form-group">
+                            <div class="form-group col-xs-12 col-sm-6">
                                 <label class="control-label" for="name">Nome completo</label>
                                 <div class="controls">
                                     <input id="name" name="name" type="text" placeholder="Nome completo"
@@ -83,33 +49,28 @@
                                 </div>
                             </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="control-label" for="email">E-mail</label>
-                                <div class="controls">
-                                    <input id="email" name="email" type="email" placeholder="E-mail"
-                                           ng-model="input.email" class="form-control required">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="email2">Confirmação de e-mail</label>
-                                <div class="controls">
-                                    <input id="email2" name="email2" type="email" placeholder="Confirmação de e-mail"
-                                           ng-model="input.email2" class="form-control required">
-
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
+                            <div class="form-group col-xs-12 col-sm-6">
                                 <label class="control-label" for="cpf">CPF</label>
                                 <div class="controls">
                                     <input id="cpf" name="cpf" type="text"
                                            ng-model="input.cpf" placeholder="CPF" class="form-control required"
                                            ui-br-cpf-mask="">
+                                </div>
+                            </div>
 
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="email">E-mail</label>
+                                <div class="controls">
+                                    <input id="email" name="email" type="email" placeholder="E-mail"
+                                           ng-model="input.email" class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="email2">Confirmação de e-mail</label>
+                                <div class="controls">
+                                    <input id="email2" name="email2" type="email" placeholder="Confirmação de e-mail"
+                                           ng-model="input.email2" class="form-control required">
                                 </div>
                             </div>
 
@@ -117,104 +78,94 @@
 
                         <div class="row" ng-if="step == 2">
 
-                            <legend>Dados pessoais</legend>
+                            <h3>Dados pessoais</h3>
 
-                            <div class="form-group">
-                                <label class="control-label" for="senha">Senha</label>
-                                <div class="controls">
-                                    <input id="senha" name="senha" type="password"
-                                           ng-model="input.senha" placeholder="Senha" class="form-control required">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="senha2">Confirmação de senha</label>
-                                <div class="controls">
-                                    <input id="senha2" name="senha2" type="password"
-                                           ng-model="input.senha2" placeholder="Confirmação de senha"
-                                           class="form-control required">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
+                            <div class="form-group col-xs-12 col-sm-6">
                                 <label class="control-label" for="rg">Número do RG</label>
                                 <div class="controls">
                                     <input id="rg" name="rg" type="number"
                                            ng-model="input.rg" placeholder="Número do RG"
                                            class="form-control required">
-
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="control-label" for="tel">Telefone</label>
-                                <div class="controls">
-                                    <input id="tel" name="tel" type="text"
-                                           ng-model="input.tel" placeholder="Telefone"
-                                           class="form-control required">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="celular">Celular</label>
-                                <div class="controls">
-                                    <input id="celular" name="celular" type="text"
-                                           ng-model="input.celular" placeholder="Celular"
-                                           class="form-control required">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="endereco">Endereço</label>
-                                <div class="controls">
-                                    <input id="endereco" name="endereco" type="text"
-                                           ng-model="input.endereco" placeholder="Endereço"
-                                           class="form-control required">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="instituicao">Instituição</label>
-                                <div class="controls">
-                                    <input id="instituicao" name="instituicao" type="text"
-                                           ng-model="input.instituicao" placeholder="Instituição"
-                                           class="form-control required">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="curso">Curso</label>
-                                <div class="controls">
-                                    <input id="curso" name="curso" type="text"
-                                           ng-model="input.curso" placeholder="Curso"
-                                           class="form-control required">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
+                            <div class="form-group col-xs-12 col-sm-6">
                                 <label class="control-label" for="curriculo">Link para download do currículo</label>
                                 <div class="controls">
                                     <input id="curriculo" name="curriculo" type="text"
                                            ng-model="input.curriculo" placeholder="Link para download do currículo"
                                            class="form-control required">
-
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="tel">Telefone</label>
+                                <div class="controls">
+                                    <input id="tel" name="tel" type="text"
+                                           ng-model="input.tel" placeholder="Telefone"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="celular">Celular</label>
+                                <div class="controls">
+                                    <input id="celular" name="celular" type="text"
+                                           ng-model="input.celular" placeholder="Celular"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="instituicao">Instituição</label>
+                                <div class="controls">
+                                    <input id="instituicao" name="instituicao" type="text"
+                                           ng-model="input.instituicao" placeholder="Instituição"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="curso">Curso</label>
+                                <div class="controls">
+                                    <input id="curso" name="curso" type="text"
+                                           ng-model="input.curso" placeholder="Curso"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="senha">Senha</label>
+                                <div class="controls">
+                                    <input id="senha" name="senha" type="password"
+                                           ng-model="input.senha" placeholder="Senha" class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="senha2">Confirmação de senha</label>
+                                <div class="controls">
+                                    <input id="senha2" name="senha2" type="password"
+                                           ng-model="input.senha2" placeholder="Confirmação de senha"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12">
+                                <label class="control-label" for="endereco">Endereço</label>
+                                <div class="controls">
+                                    <input id="endereco" name="endereco" type="text"
+                                           ng-model="input.endereco" placeholder="Endereço"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12">
                                 <label class="control-label" for="conheceu">Como conheceu o SADE</label>
                                 <div class="controls">
                                     <textarea id="conheceu" name="conheceu" maxlength="300" rows="3"
                                               ng-model="input.conheceu" placeholder="Descreva como conheceu o SADE"
                                               class="form-control required"></textarea>
-
                                 </div>
                             </div>
 
@@ -222,17 +173,14 @@
 
                         <div ng-if="step == 3"  class="container">
                             <div class="price-box">
-                                <legend>Habilidades</legend>
+                                <h3>Habilidades</h3>
 
-                                <div class="form-pricing form-horizontal" ng-repeat="skill in skills.slice(1,2)">
+                                <div class="form-pricing form-horizontal" ng-repeat="skill in skills">
                                     <div class="price-slider">
-                                        <h4 class="great">{{skill.name}}</h4>
+                                        <h4 class="great">{{skill.name}} ({{skill.value}})</h4>
 
-                                        <div class="col-sm-12">
-                                            <div id="slider"></div>
-                                        </div>
+                                        <rzslider rz-slider-model="skill.value"></rzslider>
 
-                                        <input type="hidden" id="amount" class="form-control"/>
                                     </div>
 
                                 </div>
@@ -241,8 +189,8 @@
                         </div>
 
 
-                        <div class="row">
-                            <div class="form-group">
+                        <div class="row" style="padding-top: 20px">
+                            <div class="form-group text-center">
                                 <button id="previous" name="previous" class="btn btn-default"
                                         ng-disabled="isFirst()" ng-click="previous()">
                                     Anterior
