@@ -1,0 +1,25 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <h1>Área logada.</h1>
+    </div>
+
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span id="message">Login efetuado</span>
+      </div>
+    </div>
+
+    <div class="col-xs-12 text-center">
+      <a href="javascript:void(0);" class="btn btn-primary" ng-click="logout()" ng-show="!loading">Sair do sistema</a>
+      <i class="fa fa-spin fa-circle-o-notch" ng-show="loading"></i>
+    </div>
+
+    <div ng-if="message.length" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+      <br>
+      <div class="alert alert-danger" role="alert" id="error" ng-bind="message"></div>
+    </div>
+
+  </div>
+</div>

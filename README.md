@@ -38,7 +38,21 @@ this server is:
 npm start
 ```
 
-Now browse to the app at `http://localhost:3000/index.html`.
+### Compile SASS into CSS
+
+We have preconfigured the project with a watcher for .scss files. While developing using SASS, run:
+
+```
+gulp watch
+```
+
+Alternatively, you can compile SASS into CSS once running:
+
+```
+gulp sass
+```
+
+Now browse to the app at `http://localhost:3000/`.
 
 [angular]: http://angularjs.org/
 [bower]: http://bower.io/

@@ -1,0 +1,41 @@
+// Dependencies
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600,700");
+@import url("http://fontawesome.io/assets/font-awesome/css/font-awesome.css");
+
+// Utils
+@import "utils";
+
+// Theme
+@import "colors";
+@import "fonts";
+@import "components";
+
+// Layout
+@import "layout/layout";
+@import "layout/header";
+@import "layout/footer";
+
+// Views
+@import "views/home";
+@import "views/signup";
+
+// General Styles
+* {
+  @include font-smoothing(on);
+  @include transition;
+  font-family: $font-family-text-default;
+  font-size:   $font-size-default;
+  font-weight: $font-weight-default;
+  color:       $color-grey-dark;
+  outline:     none !important;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background-color: #EAEAEA;
+}
