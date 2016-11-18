@@ -11,9 +11,6 @@ angular.module('sade')
     $scope.loading = false;
 
     $scope.next = function () {
-      
-      if(step==1)
-      
       $scope.step += 1;
     };
 
