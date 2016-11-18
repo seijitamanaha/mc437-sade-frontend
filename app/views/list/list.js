@@ -4,6 +4,10 @@ angular.module('sade')
 
 .controller('ListCtrl', ['$scope', '$User', function($scope, $User) {
 
+  if(!$User.me()) {
+    $scope.path('/');
+  }
+
   $scope.message = '';
   $scope.loading = false;
 

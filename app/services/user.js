@@ -2,7 +2,7 @@
 
 angular
   .module('sade.user', ['sade.rest'])
-  .service('$User', ['$Rest', '$rootScope', '$q', '$localStorage',
+  .service('$User', ['$Rest', '$rootScope', '$q', '$localStorage', '$window',
 
     /**
      * The User Rest Service.
@@ -13,8 +13,9 @@ angular
      * @param $rootScope The angular $routeScope service
      * @param $q The angular promise service
      * @param $storage The ngStorage session service
+     * @param $window
      */
-      function ($Rest, $rootScope, $q, $storage) {
+      function ($Rest, $rootScope, $q, $storage, $window) {
 
       /**
        * Instantiates a new User Rest Service.
@@ -40,6 +41,29 @@ angular
         self.rest = rest;
         self.cache = storage.user;
         self.scope = scope;
+
+        /*
+         * Watches for route changes for handling authentication permissions
+         */
+        // self.scope.$watch('path()', function (path) {
+        //
+        //   if (!self.me()) {
+        //
+        //     // Get public routes from config
+        //     var pub = ['/', '/entrar', '/cadastro'] || [];
+        //
+        //     // Check if current route is public
+        //     for (var i = 0; i < pub.length; i++) {
+        //       if (path.split("/")[1] === pub[i].split("/")[1] && path !== '/') {
+        //         return true;
+        //       }
+        //     }
+        //
+        //     $rootScope.path('/');
+        //
+        //   }
+        //
+        // });
 
       };
 
