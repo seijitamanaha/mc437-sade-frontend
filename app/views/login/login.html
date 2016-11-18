@@ -8,16 +8,17 @@
         </div>
         <div class="panel-body">
           <form role="form" ng-submit="login(input.username, input.password)">
-            <fieldset>
+            <fieldset class="text-center">
               <div class="form-group">
-                <input class="form-control" placeholder="Usuário" name="username" type="text" autofocus="" id="username" ng-model="input.username">
+                <input class="form-control" placeholder="Usuário" name="username" type="text" autofocus="" id="username" ng-model="input.username" required>
               </div>
               <div class="form-group">
-                <input class="form-control" placeholder="Senha" name="password" type="password" value="" id="password" ng-model="input.password">
+                <input class="form-control" placeholder="Senha" name="password" type="password" value="" id="password" ng-model="input.password" required>
               </div>
-              <button type="submit" class="btn btn-block btn-primary" ng-disabled="loading">Entrar</button>
+              <button type="submit" class="btn btn-block btn-primary" ng-show="!loading">Entrar</button>
+              <i class="fa fa-spin fa-circle-o-notch" ng-show="loading"></i>
             </fieldset>
-          </form>'
+          </form>
         </div>
       </div>
 

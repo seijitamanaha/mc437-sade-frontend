@@ -87,6 +87,79 @@ angular
         // Perform the post request
         self.rest.post('/login', data).then(function (response) {
 
+          console.log(response);
+
+          // Store user in cache and resolve
+          self.cache.me = response.object;
+          console.log(self.cache.me);
+          q.resolve(self.me());
+          fn(null, self.me());
+
+        }, function (error) {
+
+          q.reject(error);
+          fn(error);
+
+        });
+
+        return q.promise;
+
+      };
+
+      /**
+       * Logout the user
+       *
+       * @param {Function} [fn] The legacy callback
+       *
+       * @returns {Promise}
+       */
+      UserRestService.prototype.logout = function (fn) {
+
+        var self = this;
+        var q = $q.defer();
+        fn = fn || angular.noop;
+        var token = self.cache.me.loginToken || '';
+
+        // Perform the post request
+        self.rest.post('/logout', token).then(function (response) {
+
+          console.log(response);
+
+          // Store user in cache and resolve
+          self.clear();
+          q.resolve();
+          fn(null);
+
+        }, function (error) {
+
+          q.reject(error);
+          fn(error);
+
+        });
+
+        return q.promise;
+
+      };
+
+      /**
+       * Register the user specified in the data
+       *
+       * @param data
+       * @param {Function} [fn] The legacy callback
+       *
+       * @returns {Promise}
+       */
+      UserRestService.prototype.signup = function (data, fn) {
+
+        var self = this;
+        var q = $q.defer();
+        fn = fn || angular.noop;
+
+        // Perform the post request
+        self.rest.post('/user/register', data).then(function (response) {
+
+          console.log(response);
+
           // Store user in cache and resolve
           self.cache.me = response.data;
           q.resolve(self.me());

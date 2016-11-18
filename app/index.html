@@ -25,7 +25,8 @@
 <body ng-controller="LayoutCtrl">
 
   <!--Header-->
-  <ng-include src="'views/layout/header.html'"></ng-include>
+  <ng-include ng-if="!$User.me()" src="'views/layout/header.html'"></ng-include>
+  <ng-include ng-if="$User.me()" src="'views/layout/header-user.html'"></ng-include>
 
   <!--Wrapper-->
   <div class="wrapper">

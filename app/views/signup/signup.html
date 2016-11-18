@@ -74,6 +74,23 @@
                                 </div>
                             </div>
 
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="senha">Senha</label>
+                                <div class="controls">
+                                    <input id="senha" name="senha" type="password"
+                                           ng-model="input.senha" placeholder="Senha" class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="senha2">Confirmação de senha</label>
+                                <div class="controls">
+                                    <input id="senha2" name="senha2" type="password"
+                                           ng-model="input.senha2" placeholder="Confirmação de senha"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="row" ng-if="step == 2">
@@ -134,23 +151,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="senha">Senha</label>
-                                <div class="controls">
-                                    <input id="senha" name="senha" type="password"
-                                           ng-model="input.senha" placeholder="Senha" class="form-control required">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="senha2">Confirmação de senha</label>
-                                <div class="controls">
-                                    <input id="senha2" name="senha2" type="password"
-                                           ng-model="input.senha2" placeholder="Confirmação de senha"
-                                           class="form-control required">
-                                </div>
-                            </div>
-
                             <div class="form-group col-xs-12">
                                 <label class="control-label" for="endereco">Endereço</label>
                                 <div class="controls">
@@ -188,21 +188,23 @@
                             </div>
                         </div>
 
+                        <div ng-if="message.length" class="alert alert-danger" role="alert" id="error" ng-bind="message"></div>
 
                         <div class="row" style="padding-top: 20px">
                             <div class="form-group text-center">
                                 <button id="previous" name="previous" class="btn btn-default"
-                                        ng-disabled="isFirst()" ng-click="previous()">
+                                        ng-disabled="isFirst()" ng-click="previous()" ng-show="!loading">
                                     Anterior
                                 </button>
                                 <button id="next" name="next" class="btn btn-primary"
-                                        ng-if="!isLast()" ng-disabled="isLast()" ng-click="next()">
+                                        ng-if="!isLast()" ng-disabled="isLast()" ng-click="next()" ng-show="!loading">
                                     Próximo
                                 </button>
                                 <button id="signup" name="signup" class="btn btn-primary"
-                                        ng-if="isLast()" ng-click="do_signup()">
+                                        ng-if="isLast()" ng-click="do_signup(input)" ng-show="!loading">
                                     Concluir cadastro
                                 </button>
+                                <i class="fa fa-spin fa-circle-o-notch" ng-show="loading"></i>
                             </div>
                         </div>
 
@@ -212,7 +214,7 @@
                 <div class="jumbotron" ng-if="step == 4">
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8">
-                            <h2>Cadastro realizado com sucesso.</h2>
+                            <h2 id="message">Cadastro realizado</h2>
 
                             <p class="lead">O SADE (Sistema de Acompanhamento de Desenvolvedores Externos). É o banco de
                                 desenvolvedores da

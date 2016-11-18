@@ -49,7 +49,7 @@ angular
 
           $http(req).then(function (response) {
 
-            if (response && response.data && response.data.result === 'success') {
+            if (response && response.data && response.data.code === '00') {
               q.resolve(response.data);
             } else {
               q.reject(response);
