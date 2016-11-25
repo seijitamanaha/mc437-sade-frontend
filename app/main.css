@@ -76,6 +76,11 @@ h6 {
   font-size: 10px;
   font-weight: 300; }
 
+.logo {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 15px; }
+
 .stepwizard-step p {
   margin-top: 10px; }
 
