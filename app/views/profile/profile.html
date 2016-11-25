@@ -1,0 +1,236 @@
+<div class="container signup-form">
+    <div class="row">
+        <div class="col-xs-12" style="padding-top: 40px;">
+
+            Perfil
+
+            <div class="container">
+                <div class="process">
+                    <div class="process-row">
+                        <div class="process-step">
+                            <button type="button" ng-class="(step >= 1) ? 'btn-success' : 'btn-default'"
+                                    class="btn btn-circle" disabled="disabled">
+                                <i class="fa fa-envelope-o"></i></button>
+                            <p class="hidden-xs">Pré-cadastro</p>
+                        </div>
+                        <div class="process-step">
+                            <button type="button" ng-class="(step >= 2) ? 'btn-success' : 'btn-default'"
+                                    class="btn btn-circle" disabled="disabled">
+                                <i class="fa fa-user"></i></button>
+                            <p class="hidden-xs">Dados pessoais</p>
+                        </div>
+                        <div class="process-step">
+                            <button type="button" ng-class="(step >= 3) ? 'btn-success' : 'btn-default'"
+                                    class="btn btn-circle" disabled="disabled">
+                                <i class="fa fa-linkedin"></i></button>
+                            <p class="hidden-xs">Habilidades</p>
+                        </div>
+                        <div class="process-step">
+                            <button type="button" ng-class="(step == 4) ? 'btn-success' : 'btn-default'"
+                                    class="btn btn-circle" disabled="disabled">
+                                <i class="fa fa-handshake-o"></i></button>
+                            <p class="hidden-xs">Done!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <form role="form" ng-if="step < 4"
+                      ng-submit="signup(input)">
+                    <fieldset>
+                        <div class="row" ng-if="step == 1">
+
+                            <h3>Pré-cadastro</h3>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="name">Nome completo</label>
+                                <div class="controls">
+                                    <input id="name" name="name" type="text" placeholder="Nome completo"
+                                           ng-model="input.name" class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="cpf">CPF</label>
+                                <div class="controls">
+                                    <input id="cpf" name="cpf" type="text"
+                                           ng-model="input.cpf" placeholder="CPF" class="form-control required"
+                                           ui-br-cpf-mask="">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="email">E-mail</label>
+                                <div class="controls">
+                                    <input id="email" name="email" type="text" placeholder="E-mail"
+                                           ng-model="input.email" class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="email2">Confirmação de e-mail</label>
+                                <div class="controls">
+                                    <input id="email2" name="email2" type="text" placeholder="Confirmação de e-mail"
+                                           ng-model="input.email2" class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="senha">Senha</label>
+                                <div class="controls">
+                                    <input id="senha" name="senha" type="password"
+                                           ng-model="input.senha" placeholder="Senha" class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="senha2">Confirmação de senha</label>
+                                <div class="controls">
+                                    <input id="senha2" name="senha2" type="password"
+                                           ng-model="input.senha2" placeholder="Confirmação de senha"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row" ng-if="step == 2">
+
+                            <h3>Dados pessoais</h3>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="rg">Número do RG</label>
+                                <div class="controls">
+                                    <input id="rg" name="rg" type="number"
+                                           ng-model="input.rg" placeholder="Número do RG"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="curriculo">Link para download do currículo</label>
+                                <div class="controls">
+                                    <input id="curriculo" name="curriculo" type="text"
+                                           ng-model="input.curriculo" placeholder="Link para download do currículo"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="tel">Telefone</label>
+                                <div class="controls">
+                                    <input id="tel" name="tel" type="text"
+                                           ng-model="input.tel" placeholder="Telefone"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="celular">Celular</label>
+                                <div class="controls">
+                                    <input id="celular" name="celular" type="text"
+                                           ng-model="input.celular" placeholder="Celular"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="instituicao">Instituição</label>
+                                <div class="controls">
+                                    <input id="instituicao" name="instituicao" type="text"
+                                           ng-model="input.instituicao" placeholder="Instituição"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <label class="control-label" for="curso">Curso</label>
+                                <div class="controls">
+                                    <input id="curso" name="curso" type="text"
+                                           ng-model="input.curso" placeholder="Curso"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12">
+                                <label class="control-label" for="endereco">Endereço</label>
+                                <div class="controls">
+                                    <input id="endereco" name="endereco" type="text"
+                                           ng-model="input.endereco" placeholder="Endereço"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12">
+                                <label class="control-label" for="conheceu">Como conheceu o SADE</label>
+                                <div class="controls">
+                                    <textarea id="conheceu" name="conheceu" maxlength="300" rows="3"
+                                              ng-model="input.conheceu" placeholder="Descreva como conheceu o SADE"
+                                              class="form-control required"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div ng-if="step == 3"  class="container">
+                            <div class="price-box">
+                                <h3>Habilidades</h3>
+
+                                <div class="form-pricing form-horizontal" ng-repeat="skill in skills">
+                                    <div class="price-slider">
+                                        <h4 class="great">{{skill.name}} ({{skill.value}})</h4>
+
+                                        <rzslider rz-slider-model="skill.value"></rzslider>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div ng-if="message.length" class="alert alert-danger" role="alert" id="error" ng-bind="message"></div>
+
+                        <div class="row" style="padding-top: 20px">
+                            <div class="form-group text-center">
+                                <button id="previous" name="previous" class="btn btn-default"
+                                        ng-disabled="isFirst()" ng-click="previous()" ng-show="!loading">
+                                    Anterior
+                                </button>
+                                <button id="next" name="next" class="btn btn-primary"
+                                        ng-if="!isLast()" ng-disabled="isLast()" ng-click="next()" ng-show="!loading">
+                                    Próximo
+                                </button>
+                                <button id="signup" name="signup" class="btn btn-primary"
+                                        ng-if="isLast()" ng-click="do_signup(input)" ng-show="!loading">
+                                    Concluir cadastro
+                                </button>
+                                <i class="fa fa-spin fa-circle-o-notch" ng-show="loading"></i>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+                <div class="jumbotron" ng-if="step == 4">
+                    <div class="row">
+                        <div class="col-lg-offset-2 col-lg-8">
+                            <h2 id="message">Cadastro realizado</h2>
+
+                            <p class="lead">O SADE (Sistema de Acompanhamento de Desenvolvedores Externos). É o banco de
+                                desenvolvedores da
+                                Conpec. Por meio
+                                dele selecionamos desenvolvedores para nossos projetos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+

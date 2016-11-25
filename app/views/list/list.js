@@ -2,11 +2,17 @@
 
 angular.module('sade')
 
-.controller('ListCtrl', ['$scope', '$User', function($scope, $User) {
+.controller('ListCtrl', ['$scope', '$User', '$List', function($scope, $User, $List) {
 
   if(!$User.me()) {
     $scope.path('/');
   }
+
+  // $List.listUsers().then(function(response){
+  //   console.log(response);
+  // }).catch(function(error){
+  //   console.log(error)
+  // });
 
   $scope.message = '';
   $scope.loading = false;
