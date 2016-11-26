@@ -36,7 +36,15 @@ angular.module('sade')
         name: input.name,
         mail: input.email,
         cpf: input.cpf,
-        password: input.senha
+        password: input.senha,
+        rg: input.rg,
+        curriculum: input.curriculo,
+        phone: input.tel,
+        course: input.curso,
+        institution: input.instituicao,
+        address: input.endereco,
+        howMet: input.conheceu,
+        skills: $scope.skills
       };
 
       $User.signup(data).then(function() {
