@@ -177,6 +177,36 @@ angular
 
       };
 
+      /**
+       * Gets the skills data
+       *
+       * @param {Function} [fn] The legacy callback
+       *
+       * @returns {Promise}
+       */
+      UserRestService.prototype.getSkills = function (fn) {
+
+        var self = this;
+        var q = $q.defer();
+        fn = fn || angular.noop;
+
+        // Perform the post request
+        self.rest.get('/skill/get').then(function (response) {
+
+          q.resolve(response.object);
+          fn(null, response.object);
+
+        }, function (error) {
+
+          q.reject(error);
+          fn(error);
+
+        });
+
+        return q.promise;
+
+      };
+
       return new UserRestService(new $Rest(), $storage, $rootScope)
 
     }
