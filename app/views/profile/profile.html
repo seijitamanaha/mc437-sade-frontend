@@ -1,103 +1,48 @@
+<style>
+    .jumbotron-container {
+        padding: 15px;
+    }
+
+    .skills-container {
+        max-width: 750px;
+        margin-bottom: 20px;
+    }
+
+    .form-profile {
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 0 0 4px 4px;
+    }
+</style>
+
 <div class="container signup-form">
     <div class="row">
         <div class="col-xs-12" style="padding-top: 40px;">
 
-            Perfil
-
-            <div class="container">
-                <div class="process">
-                    <div class="process-row">
-                        <div class="process-step">
-                            <button type="button" ng-class="(step >= 1) ? 'btn-success' : 'btn-default'"
-                                    class="btn btn-circle" disabled="disabled">
-                                <i class="fa fa-envelope-o"></i></button>
-                            <p class="hidden-xs">Pré-cadastro</p>
-                        </div>
-                        <div class="process-step">
-                            <button type="button" ng-class="(step >= 2) ? 'btn-success' : 'btn-default'"
-                                    class="btn btn-circle" disabled="disabled">
-                                <i class="fa fa-user"></i></button>
-                            <p class="hidden-xs">Dados pessoais</p>
-                        </div>
-                        <div class="process-step">
-                            <button type="button" ng-class="(step >= 3) ? 'btn-success' : 'btn-default'"
-                                    class="btn btn-circle" disabled="disabled">
-                                <i class="fa fa-linkedin"></i></button>
-                            <p class="hidden-xs">Habilidades</p>
-                        </div>
-                        <div class="process-step">
-                            <button type="button" ng-class="(step == 4) ? 'btn-success' : 'btn-default'"
-                                    class="btn btn-circle" disabled="disabled">
-                                <i class="fa fa-handshake-o"></i></button>
-                            <p class="hidden-xs">Done!</p>
-                        </div>
-                    </div>
+            <div class="jumbotron-container">
+                <div class="jumbotron">
+                    <h3>Guilherme Victor Cunha Câmara</h3>
+                    <p>
+                        guilherm@gmail.com
+                    </p>
+                    <p>
+                        110.476.296-07
+                    </p>
                 </div>
             </div>
 
             <div class="panel-body">
-                <form role="form" ng-if="step < 4"
-                      ng-submit="signup(input)">
+                <div class="">
+                    <ul class="nav nav-tabs">
+                        <li ng-class="isProfileTab() ? 'active' : ''"><a href="#" onclick="return false;" ng-click="showProfileTab()">Dados pessoais</a></li>
+                        <li ng-class="isSkillsTab() ? 'active' : ''"><a href="#" onclick="return false;" ng-click="showSkillsTab()">Habilidades</a></li>
+                    </ul>
+                </div>
+
+                <form role="form" ng-submit="update(input)" class="form-profile">
                     <fieldset>
-                        <div class="row" ng-if="step == 1">
-
-                            <h3>Pré-cadastro</h3>
-
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="name">Nome completo</label>
-                                <div class="controls">
-                                    <input id="name" name="name" type="text" placeholder="Nome completo"
-                                           ng-model="input.name" class="form-control required">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="cpf">CPF</label>
-                                <div class="controls">
-                                    <input id="cpf" name="cpf" type="text"
-                                           ng-model="input.cpf" placeholder="CPF" class="form-control required"
-                                           ui-br-cpf-mask="">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="email">E-mail</label>
-                                <div class="controls">
-                                    <input id="email" name="email" type="text" placeholder="E-mail"
-                                           ng-model="input.email" class="form-control required">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="email2">Confirmação de e-mail</label>
-                                <div class="controls">
-                                    <input id="email2" name="email2" type="text" placeholder="Confirmação de e-mail"
-                                           ng-model="input.email2" class="form-control required">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="senha">Senha</label>
-                                <div class="controls">
-                                    <input id="senha" name="senha" type="password"
-                                           ng-model="input.senha" placeholder="Senha" class="form-control required">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="senha2">Confirmação de senha</label>
-                                <div class="controls">
-                                    <input id="senha2" name="senha2" type="password"
-                                           ng-model="input.senha2" placeholder="Confirmação de senha"
-                                           class="form-control required">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row" ng-if="step == 2">
-
-                            <h3>Dados pessoais</h3>
+                        <div class="row" ng-if="isProfileTab()">
 
                             <div class="form-group col-xs-12 col-sm-6">
                                 <label class="control-label" for="rg">Número do RG</label>
@@ -171,11 +116,27 @@
                                 </div>
                             </div>
 
+                            <div class="form-group col-xs-12 col-sm-6" ng-if="isEditMode()">
+                                <label class="control-label" for="senha">Senha</label>
+                                <div class="controls">
+                                    <input id="senha" name="senha" type="password"
+                                           ng-model="input.senha" placeholder="Deixar em branco para não alterar" class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-sm-6" ng-if="isEditMode()">
+                                <label class="control-label" for="senha2">Confirmação de senha</label>
+                                <div class="controls">
+                                    <input id="senha2" name="senha2" type="password"
+                                           ng-model="input.senha2" placeholder="Deixar em branco para não alterar"
+                                           class="form-control required">
+                                </div>
+                            </div>
+
                         </div>
 
-                        <div ng-if="step == 3"  class="container">
+                        <div ng-if="isSkillsTab()" class="skills-container">
                             <div class="price-box">
-                                <h3>Habilidades</h3>
 
                                 <div class="form-pricing form-horizontal" ng-repeat="skill in skills">
                                     <div class="price-slider">
@@ -190,21 +151,22 @@
                             </div>
                         </div>
 
-                        <div ng-if="message.length" class="alert alert-danger" role="alert" id="error" ng-bind="message"></div>
+                        <div ng-if="message.length" class="alert alert-danger" role="alert" id="error"
+                             ng-bind="message"></div>
 
                         <div class="row" style="padding-top: 20px">
                             <div class="form-group text-center">
                                 <button id="previous" name="previous" class="btn btn-default"
-                                        ng-disabled="isFirst()" ng-click="previous()" ng-show="!loading">
-                                    Anterior
+                                        ng-if="!isEditMode()" ng-disabled="false" ng-click="setEditMode(true)" ng-show="!loading">
+                                    Editar
                                 </button>
-                                <button id="next" name="next" class="btn btn-primary"
-                                        ng-if="!isLast()" ng-disabled="isLast()" ng-click="next()" ng-show="!loading">
-                                    Próximo
+                                <button id="next" name="next" class="btn btn-default"
+                                        ng-if="isEditMode()" ng-click="setEditMode(false); reset" ng-show="!loading">
+                                    Cancelar
                                 </button>
                                 <button id="signup" name="signup" class="btn btn-primary"
-                                        ng-if="isLast()" ng-click="do_signup(input)" ng-show="!loading">
-                                    Concluir cadastro
+                                        ng-if="isEditMode()" ng-click="do_update(input)" ng-show="!loading">
+                                    Salvar
                                 </button>
                                 <i class="fa fa-spin fa-circle-o-notch" ng-show="loading"></i>
                             </div>
