@@ -5,6 +5,8 @@ angular.module('sade')
 
         var model = {};
 
+        $scope.message = '';
+
         $scope.loading = true;
         $User.getUser().then(function (response) {
             $scope.loading = false;
@@ -22,8 +24,10 @@ angular.module('sade')
             if (error.data && error.data.message == 'Usuário deslogado!') {
                 $User.logout();
             }
+            else {
+                $scope.message = 'Não foi possível carregar os dados do usuário';
+            }
             $scope.loading = false;
-            //console.log(error);
         });
 
         $scope.PROFILE = 1;
@@ -41,9 +45,6 @@ angular.module('sade')
 
         $scope.tab = $scope.PROFILE;
         $scope.editMode = false;
-
-        $scope.message = '';
-        $scope.loading = false;
 
         $scope.showProfileTab = function () {
             $scope.tab = $scope.PROFILE;
