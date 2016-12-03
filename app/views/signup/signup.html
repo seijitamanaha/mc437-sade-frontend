@@ -6,25 +6,25 @@
                 <div class="process">
                     <div class="process-row">
                         <div class="process-step">
-                            <button type="button" ng-class="{ 'has-error' : step >= 1) ? 'btn-success' : 'btn-default'"
+                            <button type="button" ng-class="(step >= 1) ? 'btn-success' : 'btn-default'"
                                     class="btn btn-circle" disabled="disabled">
                                 <i class="fa fa-envelope-o"></i></button>
                             <p class="hidden-xs">Pré-cadastro</p>
                         </div>
                         <div class="process-step">
-                            <button type="button" ng-class="{ 'has-error' : step >= 2) ? 'btn-success' : 'btn-default'"
+                            <button type="button" ng-class="(step >= 2) ? 'btn-success' : 'btn-default'"
                                     class="btn btn-circle" disabled="disabled">
                                 <i class="fa fa-user"></i></button>
                             <p class="hidden-xs">Dados pessoais</p>
                         </div>
                         <div class="process-step">
-                            <button type="button" ng-class="{ 'has-error' : step >= 3) ? 'btn-success' : 'btn-default'"
+                            <button type="button" ng-class="(step >= 3) ? 'btn-success' : 'btn-default'"
                                     class="btn btn-circle" disabled="disabled">
                                 <i class="fa fa-linkedin"></i></button>
                             <p class="hidden-xs">Habilidades</p>
                         </div>
                         <div class="process-step">
-                            <button type="button" ng-class="{ 'has-error' : step == 4) ? 'btn-success' : 'btn-default'"
+                            <button type="button" ng-class="(step == 4) ? 'btn-success' : 'btn-default'"
                                     class="btn btn-circle" disabled="disabled">
                                 <i class="fa fa-handshake-o"></i></button>
                             <p class="hidden-xs">Done!</p>
