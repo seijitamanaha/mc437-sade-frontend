@@ -240,7 +240,7 @@ ul.c-controls li a:hover {
   background: #E9E9E9;
   border-radius: 10px;
   padding: 40px 15px;
-  width: 500px; }
+  max-width: 500px; }
 
 .ui-widget-content {
   border: 1px solid #bdc3c7;

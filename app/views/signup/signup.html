@@ -26,6 +26,13 @@
                         <div class="process-step">
                             <button type="button" ng-class="(step == 4) ? 'btn-success' : 'btn-default'"
                                     class="btn btn-circle" disabled="disabled">
+                                <i class="fa fa-calendar"></i></button>
+                            <p class="hidden-xs">Disponibilidade</p>
+                        </div>
+
+                        <div class="process-step">
+                            <button type="button" ng-class="(step == 5) ? 'btn-success' : 'btn-default'"
+                                    class="btn btn-circle" disabled="disabled">
                                 <i class="fa fa-handshake-o"></i></button>
                             <p class="hidden-xs">Done!</p>
                         </div>
@@ -34,7 +41,7 @@
             </div>
 
             <div class="panel-body">
-                <div ng-class="{ hide : step >= 4 }">
+                <div ng-class="{ hide : isDone() }">
                     <form role="form" name="form" id="form" class="form-profile form-horizontal" novalidate>
                         <fieldset>
                             <div ng-if="step == 1">
@@ -244,6 +251,14 @@
                                 </div>
                             </div>
 
+                            <div ng-if="step == 4">
+
+                                <div class="row">
+                                    <h3>Disponibilidade</h3>
+                                </div>
+
+                            </div>
+
                             <div ng-if="message.length" class="alert alert-danger" role="alert" id="error"
                                  ng-bind="message"></div>
 
@@ -270,7 +285,7 @@
                     </form>
                 </div>
 
-                <div class="jumbotron" ng-if="step == 4">
+                <div class="jumbotron" ng-if="isDone()">
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8">
                             <h2 id="message">Cadastro realizado</h2>

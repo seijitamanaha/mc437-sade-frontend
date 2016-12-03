@@ -4,16 +4,19 @@ angular.module('sade')
 
     .controller('SignupCtrl', ['$scope', '$User', function ($scope, $User) {
 
+        $scope.FIRST = 1;
+        $scope.LAST = 4;
+
         $scope.input = {};
 
-        $scope.step = 1;
+        $scope.step = $scope.FIRST;
         $scope.saveAttemp = false;
 
         $scope.message = '';
         $scope.loading = false;
 
         $scope.next = function () {
-            var valid = false;
+            var valid = true;
 
             if ($scope.step == 1) {
                 valid = (
@@ -52,12 +55,16 @@ angular.module('sade')
         };
 
         $scope.isFirst = function () {
-            return $scope.step == 1;
+            return $scope.step == $scope.FIRST;
         };
 
         $scope.isLast = function () {
-            return $scope.step == 3;
+            return $scope.step == $scope.LAST;
         };
+
+        $scope.isDone = function () {
+            return $scope.step == $scope.LAST + 1;
+        }
 
         $scope.match = function (value1, value2) {
             if (!value1) value1 = '';
@@ -89,7 +96,7 @@ angular.module('sade')
 
             $User.signup(data).then(function () {
                 $scope.loading = false;
-                $scope.step = 4;
+                $scope.step = $scope.LAST + 1;
             }).catch(function () {
                 $scope.loading = false;
                 $scope.message = 'Falha ao realizar cadastro';
