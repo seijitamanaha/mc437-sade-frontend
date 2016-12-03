@@ -68,7 +68,7 @@ angular
        * @returns {null|String}
        */
       UserRestService.prototype.token = function () {
-        return this.cache.me ? (this.cache.me.token ? this.cache.me.token.code : null) : null;
+        return this.cache.me ? this.cache.me.loginToken : null;
       };
 
       /**
@@ -119,7 +119,7 @@ angular
         var self = this;
         var q = $q.defer();
         fn = fn || angular.noop;
-        var token = self.cache.me.loginToken || '';
+        var token = self.cache.me.loginToken || null;
 
         // Perform the post request
         self.rest.post('/logout', token).then(function (response) {
@@ -202,6 +202,41 @@ angular
           fn(error);
 
         });
+
+        /**
+         * Logout the user
+         *
+         * @param {Function} [fn] The legacy callback
+         *
+         * @returns {Promise}
+         */
+        UserRestService.prototype.getUser = function (fn) {
+
+          var self = this;
+          var q = $q.defer();
+          fn = fn || angular.noop;
+
+          // Perform the post request
+          self.rest.post('/user/get', {
+            loginToken: self.cache.me.loginToken,
+            userId: self.cache.me.userId
+          }).then(function (response) {
+
+            console.log(response);
+            
+            q.resolve();
+            fn(null);
+
+          }, function (error) {
+
+            q.reject(error);
+            fn(error);
+
+          });
+
+          return q.promise;
+
+        };
 
         return q.promise;
 
