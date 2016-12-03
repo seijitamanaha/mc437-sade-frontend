@@ -92,7 +92,6 @@ angular
 
           // Store user in cache and resolve
           self.cache.me = response.object;
-          console.log(self.cache.me);
           q.resolve(self.me());
           fn(null, self.me());
 
@@ -203,40 +202,38 @@ angular
 
         });
 
-        /**
-         * Logout the user
-         *
-         * @param {Function} [fn] The legacy callback
-         *
-         * @returns {Promise}
-         */
-        UserRestService.prototype.getUser = function (fn) {
 
-          var self = this;
-          var q = $q.defer();
-          fn = fn || angular.noop;
 
-          // Perform the post request
-          self.rest.post('/user/get', {
-            loginToken: self.cache.me.loginToken,
-            userId: self.cache.me.userId
-          }).then(function (response) {
+        return q.promise;
 
-            console.log(response);
-            
-            q.resolve();
-            fn(null);
+      };
 
-          }, function (error) {
+      /**
+       * Gets user
+       *
+       * @param {Function} [fn] The legacy callback
+       *
+       * @returns {Promise}
+       */
+      UserRestService.prototype.getUser = function (fn) {
 
-            q.reject(error);
-            fn(error);
+        var self = this;
+        var q = $q.defer();
+        fn = fn || angular.noop;
+        var token = self.cache.me.loginToken || null;
 
-          });
+        // Perform the post request
+        self.rest.post('/user/get', token).then(function (response) {
 
-          return q.promise;
+          q.resolve(response);
+          fn(null);
 
-        };
+        }, function (error) {
+
+          q.reject(error);
+          fn(error);
+
+        });
 
         return q.promise;
 
