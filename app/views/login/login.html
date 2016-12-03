@@ -10,7 +10,7 @@
           <form role="form" ng-submit="login(input.username, input.password)">
             <fieldset class="text-center">
               <div class="form-group">
-                <input class="form-control" placeholder="Usuário" name="username" type="text" autofocus="" id="username" ng-model="input.username" required>
+                <input class="form-control" placeholder="CPF" name="username" type="text" autofocus="" id="username" ng-model="input.username" required ui-br-cpf-mask>
               </div>
               <div class="form-group">
                 <input class="form-control" placeholder="Senha" name="password" type="password" value="" id="password" ng-model="input.password" required>

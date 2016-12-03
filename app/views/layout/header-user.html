@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderCtrl">
 
   <div class="container">
 
@@ -14,7 +14,12 @@
 
     <div class="collapse navbar-collapse" id="sade-navbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#!/lista">Lista</a></li>
+        <li ng-if="$User.me().role == 'DEVELOPER'"><a href="#!/perfil">Perfil</a></li>
+        <li ng-if="$User.me().role == 'ADMIN'"><a href="#!/lista">Lista</a></li>
+        <li>
+          <a id="sair" href="javascript:void(0);" ng-show="!loading" ng-click="logout()">Sair</a>
+          <i class="fa fa-spin fa-circle-o-notch" ng-show="loading" style="line-height: 48px;"></i>
+        </li>
       </ul>
     </div>
   </div>

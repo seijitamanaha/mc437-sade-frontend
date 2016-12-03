@@ -19,7 +19,11 @@ angular.module('sade')
 
     $User.login(data).then(function() {
       $scope.loading = false;
-      $scope.path('/lista');
+      if($User.me().role == 'ADMIN') {
+        $scope.path('/lista');
+      } else {
+        $scope.path('/perfil');
+      }
     }).catch(function () {
       $scope.loading = false;
       $scope.message = 'Usuário ou senha incorretos';

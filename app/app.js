@@ -6,7 +6,8 @@ angular.module('sade', [
     'ui.utils.masks',
     'rzModule',
     'sade.rest',
-    'sade.user'
+    'sade.user',
+    'sade.list'
   ])
   .config(['$locationProvider', '$routeProvider',
     function ($locationProvider, $routeProvider) {
@@ -29,6 +30,10 @@ angular.module('sade', [
         .when('/lista', {
           templateUrl: 'views/list/list.html',
           controller: 'ListCtrl'
+        })
+        .when('/perfil', {
+          templateUrl: 'views/profile/profile.html',
+          controller: 'ProfileCtrl'
         })
         .otherwise({redirectTo: '/'});
 

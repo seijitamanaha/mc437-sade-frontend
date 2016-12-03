@@ -2,7 +2,7 @@
 
 angular
   .module('sade.user', ['sade.rest'])
-  .service('$User', ['$Rest', '$rootScope', '$q', '$localStorage',
+  .service('$User', ['$Rest', '$rootScope', '$q', '$localStorage', '$window',
 
     /**
      * The User Rest Service.
@@ -13,8 +13,9 @@ angular
      * @param $rootScope The angular $routeScope service
      * @param $q The angular promise service
      * @param $storage The ngStorage session service
+     * @param $window
      */
-      function ($Rest, $rootScope, $q, $storage) {
+      function ($Rest, $rootScope, $q, $storage, $window) {
 
       /**
        * Instantiates a new User Rest Service.
@@ -67,7 +68,7 @@ angular
        * @returns {null|String}
        */
       UserRestService.prototype.token = function () {
-        return this.cache.me ? (this.cache.me.token ? this.cache.me.token.code : null) : null;
+        return this.cache.me ? this.cache.me.loginToken : null;
       };
 
       /**
@@ -91,7 +92,6 @@ angular
 
           // Store user in cache and resolve
           self.cache.me = response.object;
-          console.log(self.cache.me);
           q.resolve(self.me());
           fn(null, self.me());
 
@@ -118,7 +118,7 @@ angular
         var self = this;
         var q = $q.defer();
         fn = fn || angular.noop;
-        var token = self.cache.me.loginToken || '';
+        var token = self.cache.me.loginToken || null;
 
         // Perform the post request
         self.rest.post('/logout', token).then(function (response) {
@@ -164,6 +164,69 @@ angular
           self.cache.me = response.data;
           q.resolve(self.me());
           fn(null, self.me());
+
+        }, function (error) {
+
+          q.reject(error);
+          fn(error);
+
+        });
+
+        return q.promise;
+
+      };
+
+      /**
+       * Gets the skills data
+       *
+       * @param {Function} [fn] The legacy callback
+       *
+       * @returns {Promise}
+       */
+      UserRestService.prototype.getSkills = function (fn) {
+
+        var self = this;
+        var q = $q.defer();
+        fn = fn || angular.noop;
+
+        // Perform the post request
+        self.rest.get('/skill/get').then(function (response) {
+
+          q.resolve(response.object);
+          fn(null, response.object);
+
+        }, function (error) {
+
+          q.reject(error);
+          fn(error);
+
+        });
+
+
+
+        return q.promise;
+
+      };
+
+      /**
+       * Gets user
+       *
+       * @param {Function} [fn] The legacy callback
+       *
+       * @returns {Promise}
+       */
+      UserRestService.prototype.getUser = function (fn) {
+
+        var self = this;
+        var q = $q.defer();
+        fn = fn || angular.noop;
+        var token = self.cache.me.loginToken || null;
+
+        // Perform the post request
+        self.rest.post('/user/get', token).then(function (response) {
+
+          q.resolve(response);
+          fn(null);
 
         }, function (error) {
 

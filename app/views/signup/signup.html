@@ -61,7 +61,7 @@
                             <div class="form-group col-xs-12 col-sm-6">
                                 <label class="control-label" for="email">E-mail</label>
                                 <div class="controls">
-                                    <input id="email" name="email" type="email" placeholder="E-mail"
+                                    <input id="email" name="email" type="text" placeholder="E-mail"
                                            ng-model="input.email" class="form-control required">
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                             <div class="form-group col-xs-12 col-sm-6">
                                 <label class="control-label" for="email2">Confirmação de e-mail</label>
                                 <div class="controls">
-                                    <input id="email2" name="email2" type="email" placeholder="Confirmação de e-mail"
+                                    <input id="email2" name="email2" type="text" placeholder="Confirmação de e-mail"
                                            ng-model="input.email2" class="form-control required">
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                                 <div class="controls">
                                     <input id="tel" name="tel" type="text"
                                            ng-model="input.tel" placeholder="Telefone"
-                                           class="form-control required">
+                                           class="form-control required" ui-br-phone-number>
                                 </div>
                             </div>
 
@@ -129,7 +129,7 @@
                                 <div class="controls">
                                     <input id="celular" name="celular" type="text"
                                            ng-model="input.celular" placeholder="Celular"
-                                           class="form-control required">
+                                           class="form-control required" ui-br-phone-number>
                                 </div>
                             </div>
 
@@ -161,25 +161,25 @@
                             </div>
 
                             <div class="form-group col-xs-12">
-                                <label class="control-label" for="conheceu">Como conheceu o SADE</label>
+                                <label class="control-label" for="howMet">Como howMet o SADE</label>
                                 <div class="controls">
-                                    <textarea id="conheceu" name="conheceu" maxlength="300" rows="3"
-                                              ng-model="input.conheceu" placeholder="Descreva como conheceu o SADE"
+                                    <textarea id="howMet" name="howMet" maxlength="300" rows="3"
+                                              ng-model="input.howMet" placeholder="Descreva como howMet o SADE"
                                               class="form-control required"></textarea>
                                 </div>
                             </div>
 
                         </div>
 
-                        <div ng-if="step == 3"  class="container">
+                        <div ng-if="step == 3"  class="skills-container">
                             <div class="price-box">
                                 <h3>Habilidades</h3>
 
                                 <div class="form-pricing form-horizontal" ng-repeat="skill in skills">
                                     <div class="price-slider">
-                                        <h4 class="great">{{skill.name}} ({{skill.value}})</h4>
+                                        <h4 class="great">{{skill.name}} ({{skill.score}})</h4>
 
-                                        <rzslider rz-slider-model="skill.value"></rzslider>
+                                        <rzslider rz-slider-model="skill.score"></rzslider>
 
                                     </div>
 
@@ -217,9 +217,7 @@
                             <h2 id="message">Cadastro realizado</h2>
 
                             <p class="lead">O SADE (Sistema de Acompanhamento de Desenvolvedores Externos). É o banco de
-                                desenvolvedores da
-                                Conpec. Por meio
-                                dele selecionamos desenvolvedores para nossos projetos.</p>
+                                desenvolvedores da Conpec. Por meio dele selecionamos desenvolvedores para nossos projetos.</p>
                         </div>
                     </div>
                 </div>

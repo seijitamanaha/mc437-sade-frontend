@@ -26,6 +26,7 @@ angular.module('sade')
       return $scope.step == 3;
     };
 
+    // Registers user
     $scope.do_signup = function (input) {
 
       $scope.message = '';
@@ -35,7 +36,15 @@ angular.module('sade')
         name: input.name,
         mail: input.email,
         cpf: input.cpf,
-        password: input.senha
+        password: input.senha,
+        rg: input.rg,
+        curriculum: input.curriculo,
+        phone: input.tel,
+        course: input.curso,
+        institution: input.instituicao,
+        address: input.endereco,
+        howMet: input.howMet,
+        skills: $scope.skills
       };
 
       $User.signup(data).then(function() {
@@ -47,27 +56,17 @@ angular.module('sade')
       });
     };
 
-    $scope.skills = [
-      {
-        id: 1,
-        name: 'C#'
-      },
-      {
-        id: 2,
-        name: 'Java'
-      },
-      {
-        id: 3,
-        name: 'Ruby'
-      }
-    ];
-
-    $scope.skills = $scope.skills.map(function(x){
-      return {
-        id: x.id,
-        name: x.name,
-        value: 10
-      }
+    // Gets skills for user register
+    $User.getSkills().then(function(response) {
+      $scope.skills = response.map(function(x){
+        return {
+          id: x.id,
+          name: x.name,
+          score: 10
+        }
+      });
+    }).catch(function(err){
+      console.error(err);
     });
 
   }]);

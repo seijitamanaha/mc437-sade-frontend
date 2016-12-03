@@ -1,0 +1,161 @@
+<div class="container signup-form">
+  <div class="row">
+    <div class="col-xs-12" style="padding-top: 40px;">
+
+      <div class="jumbotron-container">
+        <div class="jumbotron">
+          <h3 ng-bind="user_data.name"></h3>
+          <p ng-bind="user_data.mail"></p>
+          <p ng-bind="user_data.cpf"></p>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <div class="">
+          <ul class="nav nav-tabs">
+            <li ng-class="isProfileTab() ? 'active' : ''"><a href="#" onclick="return false;"
+                                                             ng-click="showProfileTab()">Dados pessoais</a></li>
+            <li ng-class="isSkillsTab() ? 'active' : ''"><a href="#" onclick="return false;" ng-click="showSkillsTab()">Habilidades</a>
+            </li>
+          </ul>
+        </div>
+
+        <form role="form" ng-submit="update(input)" class="form-profile">
+          <fieldset>
+            <div class="row" ng-if="isProfileTab()">
+
+              <div class="form-group col-xs-12 col-sm-6">
+                <label class="control-label" for="rg">Número do RG</label>
+                <div class="controls">
+                  <input id="rg" name="rg" type="text"
+                         ng-model="input.rg" placeholder="Número do RG"
+                         class="form-control required" ng-disabled="!isEditMode()">
+                </div>
+              </div>
+
+              <div class="form-group col-xs-12 col-sm-6">
+                <label class="control-label" for="phone">Telefone</label>
+                <div class="controls">
+                  <input id="phone" name="phone" type="text"
+                         ng-model="input.phone" placeholder="Telefone"
+                         class="form-control required" ng-disabled="!isEditMode()">
+                </div>
+              </div>
+
+              <div class="form-group col-xs-12 col-sm-6">
+                <label class="control-label" for="institution">Instituição</label>
+                <div class="controls">
+                  <input id="institution" name="institution" type="text"
+                         ng-model="input.institution" placeholder="Instituição"
+                         class="form-control required" ng-disabled="!isEditMode()">
+                </div>
+              </div>
+
+              <div class="form-group col-xs-12 col-sm-6">
+                <label class="control-label" for="course">Curso</label>
+                <div class="controls">
+                  <input id="course" name="course" type="text"
+                         ng-model="input.course" placeholder="Curso"
+                         class="form-control required" ng-disabled="!isEditMode()">
+                </div>
+              </div>
+
+              <div class="form-group col-xs-12">
+                <label class="control-label" for="curriculum">Link para download do currículo</label>
+                <div class="controls">
+                  <input id="curriculum" name="curriculum" type="text"
+                         ng-model="input.curriculum"
+                         placeholder="Link para download do currículo"
+                         class="form-control required" ng-disabled="!isEditMode()">
+                </div>
+              </div>
+
+              <div class="form-group col-xs-12">
+                <label class="control-label" for="address">Endereço</label>
+                <div class="controls">
+                  <input id="address" name="address" type="text"
+                         ng-model="input.address" placeholder="Endereço"
+                         class="form-control required" ng-disabled="!isEditMode()">
+                </div>
+              </div>
+
+              <div class="form-group col-xs-12">
+                <label class="control-label" for="howMet">Como conheceu o SADE</label>
+                <div class="controls">
+                                    <textarea id="howMet" name="howMet" maxlength="300" rows="3"
+                                              ng-model="input.howMet"
+                                              placeholder="Descreva como conheceu o SADE"
+                                              class="form-control required" ng-disabled="!isEditMode()"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group col-xs-12 col-sm-6" ng-if="isEditMode()">
+                <label class="control-label" for="password">Senha</label>
+                <div class="controls">
+                  <input id="password" name="password" type="password"
+                         ng-model="input.password" placeholder="Deixar em branco para não alterar" class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group col-xs-12 col-sm-6" ng-if="isEditMode()">
+                <label class="control-label" for="password2">Confirmação de senha</label>
+                <div class="controls">
+                  <input id="password2" name="password2" type="password"
+                         ng-model="input.password2" placeholder="Deixar em branco para não alterar"
+                         class="form-control">
+                </div>
+              </div>
+
+            </div>
+
+            <div ng-if="isSkillsTab()" class="skills-container">
+              <div class="price-box">
+
+                <div class="form-pricing form-horizontal" ng-repeat="skill in skills">
+                  <div class="price-slider">
+                    <h4 class="great">{{skill.name}} ({{skill.value}})</h4>
+
+                    <rzslider rz-slider-model="skill.value" rz-slider-options="slider.options"
+                              ng-disabled="!isEditMode()"></rzslider>
+
+                  </div>
+
+                </div>
+                <div class="block-box" ng-if="!isEditMode()"></div>
+              </div>
+
+            </div>
+
+            <div ng-if="message.length" class="alert alert-danger" role="alert" id="error"
+                 ng-bind="message"></div>
+
+            <div class="row" style="padding-top: 20px">
+              <div class="form-group text-center">
+                <button id="previous" name="previous" class="btn btn-default"
+                        ng-if="!isEditMode()" ng-disabled="false" ng-click="setEditMode(true)" ng-show="!loading">
+                  Editar
+                </button>
+                <button id="next" name="next" class="btn btn-default"
+                        ng-if="isEditMode()" ng-click="setEditMode(false); reset" ng-show="!loading">
+                  Cancelar
+                </button>
+                <button id="signup" name="signup" class="btn btn-primary"
+                        ng-if="isEditMode()" ng-click="do_update(input)" ng-show="!loading">
+                  Salvar
+                </button>
+                <i class="fa fa-spin fa-circle-o-notch" ng-show="loading"></i>
+              </div>
+            </div>
+
+          </fieldset>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
