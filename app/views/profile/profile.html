@@ -26,19 +26,34 @@
                     <fieldset>
                         <div ng-if="isProfileTab()">
                             <div class="row">
-                                <div ng-class="((form.rg.$touched && form.rg.$invalid) ? 'has-error' : '')"
+                                <div ng-class="(((form.rg.$touched || saveAttemp) && form.rg.$invalid) ? 'has-error' : '')"
                                      class="control-group col-xs-12 col-sm-6">
                                     <label class="control-label" for="rg">Número do RG</label>
                                     <div class="controls">
                                         <input id="rg" name="rg" type="text"
                                                ng-model="input.rg" placeholder="Número do RG"
                                                class="form-control required" ng-disabled="!isEditMode()" required>
-                                        <span class="label label-danger" ng-show="form.rg.$touched && form.rg.$invalid">RG é obrigatório.</span>
+                                        <span class="label label-danger"
+                                              ng-show="(form.rg.$touched || saveAttemp) && form.rg.$invalid">RG é obrigatório.</span>
                                     </div>
                                 </div>
 
-                                <div ng-class="((form.curriculum.$touched && form.curriculum.$invalid) ? 'has-error' : '')"
+                                <div ng-class="(((form.phone.$touched || saveAttemp) && form.phone.$invalid) ? 'has-error' : '')"
                                      class="control-group col-xs-12 col-sm-6">
+                                    <label class="control-label" for="phone">Telefone</label>
+                                    <div class="controls">
+                                        <input id="phone" name="phone" type="text"
+                                               ng-model="input.phone" placeholder="Telefone"
+                                               class="form-control required" ng-disabled="!isEditMode()" required>
+                                        <span class="label label-danger"
+                                              ng-show="(form.phone.$touched || saveAttemp) && form.phone.$invalid">Telefone é obrigatório.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div ng-class="(((form.curriculum.$touched || saveAttemp) && form.curriculum.$invalid) ? 'has-error' : '')"
+                                     class="control-group col-xs-12 col-sm-12">
                                     <label class="control-label" for="curriculum">Link para download do
                                         currículo</label>
                                     <div class="controls">
@@ -47,27 +62,12 @@
                                                placeholder="Link para download do currículo"
                                                class="form-control required" ng-disabled="!isEditMode()" required>
                                         <span class="label label-danger"
-                                              ng-show="form.curriculum.$touched && form.curriculum.$invalid">Link é obrigatório.</span>
+                                              ng-show="(form.curriculum.$touched || saveAttemp) && form.curriculum.$invalid">Link é obrigatório.</span>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
-                                <div ng-class="((form.phone.$touched && form.phone.$invalid) ? 'has-error' : '')"
-                                    class="control-group col-xs-12 col-sm-6">
-                                    <label class="control-label" for="phone">Telefone</label>
-                                    <div class="controls">
-                                        <input id="phone" name="phone" type="text"
-                                               ng-model="input.phone" placeholder="Telefone"
-                                               class="form-control required" ng-disabled="!isEditMode()" required>
-                                        <span class="label label-danger"
-                                              ng-show="form.phone.$touched && form.phone.$invalid">Telefone é obrigatório.</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div ng-class="((form.institution.$touched && form.institution.$invalid) ? 'has-error' : '')"
+                                <div ng-class="(((form.institution.$touched || saveAttemp) && form.institution.$invalid) ? 'has-error' : '')"
                                      class="control-group col-xs-12 col-sm-6">
                                     <label class="control-label" for="institution">Instituição</label>
                                     <div class="controls">
@@ -76,11 +76,11 @@
                                                placeholder="Instituição"
                                                class="form-control required" ng-disabled="!isEditMode()" required>
                                         <span class="label label-danger"
-                                              ng-show="form.institution.$touched && form.institution.$invalid">Instituição é obrigatório.</span>
+                                              ng-show="(form.institution.$touched || saveAttemp) && form.institution.$invalid">Instituição é obrigatório.</span>
                                     </div>
                                 </div>
 
-                                <div ng-class="((form.course.$touched && form.course.$invalid) ? 'has-error' : '')"
+                                <div ng-class="(((form.course.$touched || saveAttemp) && form.course.$invalid) ? 'has-error' : '')"
                                      class="control-group col-xs-12 col-sm-6">
                                     <label class="control-label" for="course">Curso</label>
                                     <div class="controls">
@@ -88,13 +88,13 @@
                                                ng-model="input.course" placeholder="Curso"
                                                class="form-control required" ng-disabled="!isEditMode()" required>
                                         <span class="label label-danger"
-                                              ng-show="form.course.$touched && form.course.$invalid">Curso é obrigatório.</span>
+                                              ng-show="(form.course.$touched || saveAttemp) && form.course.$invalid">Curso é obrigatório.</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div ng-class="((form.address.$touched && form.address.$invalid) ? 'has-error' : '')"
+                                <div ng-class="(((form.address.$touched || saveAttemp) && form.address.$invalid) ? 'has-error' : '')"
                                      class="control-group col-xs-12">
                                     <label class="control-label" for="address">Endereço</label>
                                     <div class="controls">
@@ -102,12 +102,12 @@
                                                ng-model="input.address" placeholder="Endereço"
                                                class="form-control required" ng-disabled="!isEditMode()" required>
                                         <span class="label label-danger"
-                                              ng-show="form.address.$touched && form.address.$invalid">Endereço é obrigatório.</span>
+                                              ng-show="(form.address.$touched || saveAttemp) && form.address.$invalid">Endereço é obrigatório.</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div ng-class="((form.howMet.$touched && form.howMet.$invalid) ? 'has-error' : '')"
+                                <div ng-class="(((form.howMet.$touched || saveAttemp) && form.howMet.$invalid) ? 'has-error' : '')"
                                      class="control-group col-xs-12">
                                     <label class="control-label" for="howMet">Como conheceu o SADE</label>
                                     <div class="controls">
@@ -117,7 +117,7 @@
                                               class="form-control required" ng-disabled="!isEditMode()"
                                               required></textarea>
                                         <span class="label label-danger"
-                                              ng-show="form.howMet.$touched && form.howMet.$invalid">Como conheceu o SADE é obrigatório.</span>
+                                              ng-show="(form.howMet.$touched || saveAttemp) && form.howMet.$invalid">Como conheceu o SADE é obrigatório.</span>
                                     </div>
                                 </div>
                             </div>
@@ -170,16 +170,16 @@
 
                         <div class="row" style="padding-top: 20px">
                             <div class="control-group text-center">
-                                <button id="previous" name="previous" class="btn btn-default"
+                                <button id="edit" name="edit" class="btn btn-default"
                                         ng-if="!isEditMode()" ng-disabled="false" ng-click="setEditMode(true)"
                                         ng-show="!loading">
                                     Editar
                                 </button>
-                                <button id="next" name="next" class="btn btn-default"
+                                <button id="cancel" name="cancel" class="btn btn-default"
                                         ng-if="isEditMode()" ng-click="setEditMode(false); reset" ng-show="!loading">
                                     Cancelar
                                 </button>
-                                <button id="signup" name="signup" class="btn btn-primary"
+                                <button id="update" name="update" class="btn btn-primary"
                                         ng-if="isEditMode()" ng-click="do_update(input)" ng-show="!loading">
                                     Salvar
                                 </button>
@@ -189,10 +189,11 @@
 
                     </fieldset>
                 </form>
-
             </div>
 
         </div>
 
     </div>
+
+</div>
 </div>

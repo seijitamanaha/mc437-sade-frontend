@@ -8,7 +8,7 @@ angular.module('sade')
         $scope.loading = true;
         $User.getUser().then(function(response) {
             $scope.loading = false;
-            console.log(response.object);
+            //console.log(response.object);
             $scope.user_data = response.object;
             $scope.skills = $scope.user_data.skills.map(function (x) {
                 return {
@@ -23,7 +23,7 @@ angular.module('sade')
                 $User.logout();
             }
             $scope.loading = false;
-            console.log(error);
+            //console.log(error);
         });
 
         $scope.PROFILE = 1;
@@ -74,7 +74,7 @@ angular.module('sade')
 
         $scope.resetForm = function () {
 
-            console.log($scope.user_data);
+            //console.log($scope.user_data);
 
             $scope.input = {
                 rg: $scope.user_data.rg,
@@ -86,6 +86,8 @@ angular.module('sade')
                 howMet: $scope.user_data.howMet,
                 skills: $scope.user_data.skills
             }
+
+            $scope.saveAttemp = false;
         };
 
         $scope.isEditMode = function () {
@@ -122,6 +124,9 @@ angular.module('sade')
                     $scope.loading = false;
                     $scope.message = 'Falha ao atualizar ' + (($scope.isProfileTab()) ? 'os dados pessoais.' : 'as habilidades.');
                 });
+            }
+            else {
+                $scope.saveAttemp = true;
             }
         };
 

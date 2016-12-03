@@ -10,10 +10,11 @@ angular
      * @type {$User|Object}
      *
      * @param $Rest the $Rest rest service
+     * @param $User the $User service
      * @param $rootScope The angular $routeScope service
      * @param $q The angular promise service
      */
-      function ($Rest, $rootScope, $q) {
+      function ($Rest, $User, $rootScope, $q) {
 
       /**
        * Instantiates a new List Rest Service.
@@ -44,9 +45,11 @@ angular
         var self = this;
         var q = $q.defer();
         fn = fn || angular.noop;
+        data = data || {};
+        data.loginToken = $User.token();
 
         // Perform the get request
-        self.rest.get('/posts').then(function (response) {
+        self.rest.post('/user/filter', data).then(function (response) {
 
           q.resolve(response);
           fn(null, response);
