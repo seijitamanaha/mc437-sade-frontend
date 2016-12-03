@@ -388,6 +388,10 @@ body {
   padding-left: 5px !important;
 }
 
+.seven-cols .label {
+  cursor: pointer;
+}
+
 .time-control, .clock-row input {
   text-align: center;
 }
@@ -398,4 +402,8 @@ body {
     width: 14.285714285714285714285714285714%;
     *width: 14.285714285714285714285714285714%;
   }
+}
+
+.label-primary {
+  background-color: #E8781A !important;
 }
