@@ -6,6 +6,8 @@
     .skills-container {
         max-width: 750px;
         margin: 0 auto 20px auto;
+        padding: 10px 0 10px 0;
+        position: relative;
     }
 
     .form-profile {
@@ -13,6 +15,20 @@
         background-color: #fff;
         border: 1px solid #ddd;
         border-radius: 0 0 4px 4px;
+    }
+
+    .block-box {
+        opacity: 0.25;
+        background-color: #000;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        cursor: not-allowed;
+        top: 0;
+        right: 0;
+        z-index: 5;
+        border-radius: 4px;
+        padding: 20px;
     }
 </style>
 
@@ -22,13 +38,9 @@
 
             <div class="jumbotron-container">
                 <div class="jumbotron">
-                    <h3>Guilherme Victor Cunha Câmara</h3>
-                    <p>
-                        guilherm@gmail.com
-                    </p>
-                    <p>
-                        000.000.000-99
-                    </p>
+                    <h3 ng-bind="user.name"></h3>
+                    <p ng-bind="user.email"></p>
+                    <p ng-bind="user.cpf"></p>
                 </div>
             </div>
 
@@ -47,27 +59,27 @@
                             <div class="form-group col-xs-12 col-sm-6">
                                 <label class="control-label" for="rg">Número do RG</label>
                                 <div class="controls">
-                                    <input id="rg" name="rg" type="number"
-                                           ng-model="input.rg" placeholder="Número do RG"
-                                           class="form-control required">
+                                    <input id="rg" name="rg" type="text"
+                                           ng-model="input.rg" ng-bind="user.rg" placeholder="Número do RG"
+                                           class="form-control required" ng-disabled="!isEditMode()">
                                 </div>
                             </div>
 
                             <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="curriculo">Link para download do currículo</label>
+                                <label class="control-label" for="curriculum">Link para download do currículo</label>
                                 <div class="controls">
-                                    <input id="curriculo" name="curriculo" type="text"
-                                           ng-model="input.curriculo" placeholder="Link para download do currículo"
-                                           class="form-control required">
+                                    <input id="curriculum" name="curriculum" type="text"
+                                           ng-model="input.curriculum" ng-bind="user.curriculum" placeholder="Link para download do currículo"
+                                           class="form-control required" ng-disabled="!isEditMode()">
                                 </div>
                             </div>
 
                             <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="tel">Telefone</label>
+                                <label class="control-label" for="phone">Telefone</label>
                                 <div class="controls">
-                                    <input id="tel" name="tel" type="text"
-                                           ng-model="input.tel" placeholder="Telefone"
-                                           class="form-control required">
+                                    <input id="phone" name="phone" ng-bind="user.phone" type="text"
+                                           ng-model="input.phone" placeholder="Telefone"
+                                           class="form-control required" ng-disabled="!isEditMode()">
                                 </div>
                             </div>
 
@@ -75,61 +87,61 @@
                                 <label class="control-label" for="celular">Celular</label>
                                 <div class="controls">
                                     <input id="celular" name="celular" type="text"
-                                           ng-model="input.celular" placeholder="Celular"
-                                           class="form-control required">
+                                           ng-model="input.celular" ng-bind="user.celular" placeholder="Celular"
+                                           class="form-control required" ng-disabled="!isEditMode()">
                                 </div>
                             </div>
 
                             <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="instituicao">Instituição</label>
+                                <label class="control-label" for="institution">Instituição</label>
                                 <div class="controls">
-                                    <input id="instituicao" name="instituicao" type="text"
-                                           ng-model="input.instituicao" placeholder="Instituição"
-                                           class="form-control required">
+                                    <input id="institution" name="institution" type="text"
+                                           ng-model="input.institution" ng-bind="user.institution" placeholder="Instituição"
+                                           class="form-control required" ng-disabled="!isEditMode()">
                                 </div>
                             </div>
 
                             <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="curso">Curso</label>
+                                <label class="control-label" for="course">Curso</label>
                                 <div class="controls">
-                                    <input id="curso" name="curso" type="text"
-                                           ng-model="input.curso" placeholder="Curso"
-                                           class="form-control required">
+                                    <input id="course" name="course" type="text"
+                                           ng-model="input.course" ng-bind="user.course" placeholder="Curso"
+                                           class="form-control required" ng-disabled="!isEditMode()">
                                 </div>
                             </div>
 
                             <div class="form-group col-xs-12">
-                                <label class="control-label" for="endereco">Endereço</label>
+                                <label class="control-label" for="address">Endereço</label>
                                 <div class="controls">
-                                    <input id="endereco" name="endereco" type="text"
-                                           ng-model="input.endereco" placeholder="Endereço"
-                                           class="form-control required">
+                                    <input id="address" name="address" type="text"
+                                           ng-model="input.address" ng-bind="user.address" placeholder="Endereço"
+                                           class="form-control required" ng-disabled="!isEditMode()">
                                 </div>
                             </div>
 
                             <div class="form-group col-xs-12">
-                                <label class="control-label" for="conheceu">Como conheceu o SADE</label>
+                                <label class="control-label" for="howMet">Como conheceu o SADE</label>
                                 <div class="controls">
-                                    <textarea id="conheceu" name="conheceu" maxlength="300" rows="3"
-                                              ng-model="input.conheceu" placeholder="Descreva como conheceu o SADE"
-                                              class="form-control required"></textarea>
+                                    <textarea id="howMet" name="howMet" maxlength="300" rows="3"
+                                              ng-model="input.howMet" ng-bind="user.howMet" placeholder="Descreva como conheceu o SADE"
+                                              class="form-control required" ng-disabled="!isEditMode()"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group col-xs-12 col-sm-6" ng-if="isEditMode()">
-                                <label class="control-label" for="senha">Senha</label>
+                                <label class="control-label" for="password">Senha</label>
                                 <div class="controls">
-                                    <input id="senha" name="senha" type="password"
-                                           ng-model="input.senha" placeholder="Deixar em branco para não alterar" class="form-control required">
+                                    <input id="password" name="password" type="password"
+                                           ng-model="input.password" placeholder="Deixar em branco para não alterar" class="form-control">
                                 </div>
                             </div>
 
                             <div class="form-group col-xs-12 col-sm-6" ng-if="isEditMode()">
-                                <label class="control-label" for="senha2">Confirmação de senha</label>
+                                <label class="control-label" for="password2">Confirmação de senha</label>
                                 <div class="controls">
-                                    <input id="senha2" name="senha2" type="password"
-                                           ng-model="input.senha2" placeholder="Deixar em branco para não alterar"
-                                           class="form-control required">
+                                    <input id="password2" name="password2" type="password"
+                                           ng-model="input.password2" placeholder="Deixar em branco para não alterar"
+                                           class="form-control">
                                 </div>
                             </div>
 
@@ -142,13 +154,14 @@
                                     <div class="price-slider">
                                         <h4 class="great">{{skill.name}} ({{skill.value}})</h4>
 
-                                        <rzslider rz-slider-model="skill.value"></rzslider>
+                                        <rzslider rz-slider-model="skill.value" rz-slider-options="slider.options" ng-disabled="!isEditMode()"></rzslider>
 
                                     </div>
 
                                 </div>
-
+                                <div class="block-box" ng-if="!isEditMode()"></div>
                             </div>
+
                         </div>
 
                         <div ng-if="message.length" class="alert alert-danger" role="alert" id="error"

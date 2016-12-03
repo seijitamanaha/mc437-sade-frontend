@@ -4,12 +4,53 @@ angular.module('sade')
 
     .controller('ProfileCtrl', ['$scope', '$User', function ($scope, $User) {
 
+        // TODO
+        var model = {
+            name: 'Andre Seiji',
+            email: 'naofaznada@email.com',
+            cpf: '12312312388',
+            rg: '71238718273',
+            curriculum: 'http://www.google.com',
+            phone: '1238123-123',
+            celular: '88888-123',
+            course: 'Enfermage',
+            institution: 'PUC campinas',
+            address: 'campinas 1828',
+            howMet: 'site do saadeee'
+        };
+
+        var skills = [
+            {
+                id: 1,
+                name: 'C#',
+                value: 4
+            },
+            {
+                id: 2,
+                name: 'Java',
+                value: 3
+            },
+            {
+                id: 3,
+                name: 'Ruby',
+                value: 9
+            }
+        ];
+
         $scope.PROFILE = 1;
         $scope.SKILLS = 2;
 
+        $scope.slider = {
+            value: 0,
+            options: {
+                floor: 0,
+                ceil: 10
+            }
+        };
+
         $scope.input = {};
 
-        $scope.tab = 1;
+        $scope.tab = $scope.PROFILE;
         $scope.editMode = false;
 
         $scope.message = '';
@@ -43,8 +84,31 @@ angular.module('sade')
         };
 
         $scope.resetForm = function () {
-            //TODO
-            //$scope.user = angular.copy(originalModel);
+            $scope.skills = skills.map(function (x) {
+                return {
+                    id: x.id,
+                    name: x.name,
+                    value: x.value
+                }
+            });
+
+            $scope.user = {
+                name: model.name,
+                email: model.email,
+                cpf: model.cpf.substr(0, 3) + '.' + model.cpf.substr(3, 3) + '.' + model.cpf.substr(6, 3) + '-' + model.cpf.substr(9),
+            };
+
+            $scope.input = {
+                rg: model.rg,
+                curriculum: model.curriculum,
+                phone: model.phone,
+                celular: model.celular,
+                course: model.course,
+                institution: model.institution,
+                address: model.address,
+                howMet: model.howMet,
+                skills: $scope.skills
+            }
         };
 
         $scope.isEditMode = function () {
@@ -61,14 +125,15 @@ angular.module('sade')
                 name: input.name,
                 mail: input.email,
                 cpf: input.cpf,
-                password: input.senha,
+                password: input.password,
                 rg: input.rg,
-                curriculum: input.curriculo,
-                phone: input.tel,
-                course: input.curso,
-                institution: input.instituicao,
-                address: input.endereco,
-                howMet: input.conheceu,
+                curriculum: input.curriculum,
+                phone: input.phone,
+                celular: input.celular,
+                course: input.course,
+                institution: input.institution,
+                address: input.address,
+                howMet: input.howMet,
                 skills: $scope.skills
             };
 
@@ -81,28 +146,6 @@ angular.module('sade')
             });
         };
 
-        // TODO
-        $scope.skills = [
-            {
-                id: 1,
-                name: 'C#'
-            },
-            {
-                id: 2,
-                name: 'Java'
-            },
-            {
-                id: 3,
-                name: 'Ruby'
-            }
-        ];
-
-        $scope.skills = $scope.skills.map(function (x) {
-            return {
-                id: x.id,
-                name: x.name,
-                value: 10
-            }
-        });
+        $scope.resetForm();
 
     }]);

@@ -43,7 +43,7 @@ angular.module('sade')
         course: input.curso,
         institution: input.instituicao,
         address: input.endereco,
-        howMet: input.conheceu,
+        howMet: input.howMet,
         skills: $scope.skills
       };
 
