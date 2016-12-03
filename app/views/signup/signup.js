@@ -50,7 +50,15 @@ angular.module('sade')
         $scope.toogleSab = function () {
             $scope.selectedSab = !$scope.selectedSab;
         }
-        
+
+        $scope.verifyClock = function (element, compare) {
+            console.log(element);
+
+            if (compare) {
+                console.log(compare);
+            }
+        }
+
         $scope.next = function () {
             var valid = true;
 
