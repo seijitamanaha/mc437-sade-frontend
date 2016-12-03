@@ -13,20 +13,20 @@
             <div class="panel-body">
                 <div class="">
                     <ul class="nav nav-tabs">
-                        <li ng-class="isProfileTab() ? 'active' : ''"><a href="#" onclick="return false;"
+                        <li ng-class="{ 'active' : isProfileTab() }"><a href="#" onclick="return false;"
                                                                          ng-click="showProfileTab()">Dados pessoais</a>
                         </li>
-                        <li ng-class="isSkillsTab() ? 'active' : ''"><a href="#" onclick="return false;"
+                        <li ng-class="{ 'active' : isSkillsTab() }"><a href="#" onclick="return false;"
                                                                         ng-click="showSkillsTab()">Habilidades</a>
                         </li>
                     </ul>
                 </div>
 
-                <form role="form" name="form" ng-submit="update(input)" class="form-profile form-horizontal" novalidate>
+                <form role="form" name="form" class="form-profile form-horizontal" novalidate>
                     <fieldset>
-                        <div ng-if="isProfileTab()">
+                        <div ng-class="{ 'hide' : !isProfileTab() }">
                             <div class="row">
-                                <div ng-class="(((form.rg.$touched || saveAttemp) && form.rg.$invalid) ? 'has-error' : '')"
+                                <div ng-class="{ 'has-error' : ((form.rg.$touched || saveAttemp) && form.rg.$invalid) }"
                                      class="control-group col-xs-12 col-sm-6">
                                     <label class="control-label" for="rg">Número do RG</label>
                                     <div class="controls">
@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
 
-                                <div ng-class="(((form.phone.$touched || saveAttemp) && form.phone.$invalid) ? 'has-error' : '')"
+                                <div ng-class="{ 'has-error' : ((form.phone.$touched || saveAttemp) && form.phone.$invalid) }"
                                      class="control-group col-xs-12 col-sm-6">
                                     <label class="control-label" for="phone">Telefone</label>
                                     <div class="controls">
@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="row">
-                                <div ng-class="(((form.curriculum.$touched || saveAttemp) && form.curriculum.$invalid) ? 'has-error' : '')"
+                                <div ng-class="{ 'has-error' : ((form.curriculum.$touched || saveAttemp) && form.curriculum.$invalid) }"
                                      class="control-group col-xs-12 col-sm-12">
                                     <label class="control-label" for="curriculum">Link para download do
                                         currículo</label>
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div ng-class="(((form.institution.$touched || saveAttemp) && form.institution.$invalid) ? 'has-error' : '')"
+                                <div ng-class="{ 'has-error' : ((form.institution.$touched || saveAttemp) && form.institution.$invalid) }"
                                      class="control-group col-xs-12 col-sm-6">
                                     <label class="control-label" for="institution">Instituição</label>
                                     <div class="controls">
@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
 
-                                <div ng-class="(((form.course.$touched || saveAttemp) && form.course.$invalid) ? 'has-error' : '')"
+                                <div ng-class="{ 'has-error' : ((form.course.$touched || saveAttemp) && form.course.$invalid) }"
                                      class="control-group col-xs-12 col-sm-6">
                                     <label class="control-label" for="course">Curso</label>
                                     <div class="controls">
@@ -94,12 +94,12 @@
                             </div>
 
                             <div class="row">
-                                <div ng-class="(((form.address.$touched || saveAttemp) && form.address.$invalid) ? 'has-error' : '')"
+                                <div ng-class="{ 'has-error' : ((form.address.$touched || saveAttemp) && form.address.$invalid) }"
                                      class="control-group col-xs-12">
                                     <label class="control-label" for="address">Endereço</label>
                                     <div class="controls">
                                         <input id="address" name="address" type="text"
-                                               ng-model="input.address" placeholder="Endereço"
+                                               ng-model="input.address" placeholder="UF - Cidade, Rua, Número, Complemento"
                                                class="form-control required" ng-disabled="!isEditMode()" required>
                                         <span class="label label-danger"
                                               ng-show="(form.address.$touched || saveAttemp) && form.address.$invalid">Endereço é obrigatório.</span>
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div ng-class="(((form.howMet.$touched || saveAttemp) && form.howMet.$invalid) ? 'has-error' : '')"
+                                <div ng-class="{ 'has-error' : ((form.howMet.$touched || saveAttemp) && form.howMet.$invalid) }"
                                      class="control-group col-xs-12">
                                     <label class="control-label" for="howMet">Como conheceu o SADE</label>
                                     <div class="controls">
@@ -132,22 +132,24 @@
                                     </div>
                                 </div>
 
-                                <div ng-class="((input.password != input.password2) ? 'has-error' : '')"
+                                <div ng-class="{ 'has-error' : (saveAttemp || form.password2.$touched) && form.password2.$invalid }"
                                      class="control-group col-xs-12 col-sm-6" ng-if="isEditMode()">
                                     <label class="control-label" for="password2">Confirmação de senha</label>
                                     <div class="controls">
                                         <input id="password2" name="password2" type="password"
                                                ng-model="input.password2"
                                                placeholder="Deixar em branco para não alterar"
-                                               class="form-control">
-                                        <span class="label label-danger" ng-show="input.password != input.password2">As senhas não são iguais.</span>
+                                               class="form-control"
+                                               ui-validate="'match($value, input.password)'" ui-validate-watch="'input.password'">
+                                        <span class="label label-danger"
+                                              ng-show="(saveAttemp || form.password2.$touched) && form.password2.$invalid">As senhas não são iguais.</span>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
-                        <div ng-if="isSkillsTab()" class="skills-container">
+                        <div ng-class="{ 'hide' : !isSkillsTab() }" class="skills-container">
                             <div class="price-box">
 
                                 <div class="form-pricing form-horizontal" ng-repeat="skill in skills">
@@ -171,7 +173,7 @@
                         <div class="row" style="padding-top: 20px">
                             <div class="control-group text-center">
                                 <button id="edit" name="edit" class="btn btn-default"
-                                        ng-if="!isEditMode()" ng-disabled="false" ng-click="setEditMode(true)"
+                                        ng-if="!isEditMode()" ng-click="setEditMode(true)"
                                         ng-show="!loading">
                                     Editar
                                 </button>
@@ -195,5 +197,4 @@
 
     </div>
 
-</div>
 </div>

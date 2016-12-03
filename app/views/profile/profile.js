@@ -6,7 +6,7 @@ angular.module('sade')
         var model = {};
 
         $scope.loading = true;
-        $User.getUser().then(function(response) {
+        $User.getUser().then(function (response) {
             $scope.loading = false;
             //console.log(response.object);
             $scope.user_data = response.object;
@@ -18,8 +18,8 @@ angular.module('sade')
                 }
             });
             $scope.resetForm();
-        }).catch(function(error){
-            if(error.data && error.data.message == 'Usuário deslogado!') {
+        }).catch(function (error) {
+            if (error.data && error.data.message == 'Usuário deslogado!') {
                 $User.logout();
             }
             $scope.loading = false;
@@ -74,7 +74,13 @@ angular.module('sade')
 
         $scope.resetForm = function () {
 
-            //console.log($scope.user_data);
+            $scope.form.rg.$touched = false;
+            $scope.form.curriculum.$touched = false;
+            $scope.form.phone.$touched = false;
+            $scope.form.course.$touched = false;
+            $scope.form.institution.$touched = false;
+            $scope.form.address.$touched = false;
+            $scope.form.howMet.$touched = false;
 
             $scope.input = {
                 rg: $scope.user_data.rg,
@@ -93,6 +99,13 @@ angular.module('sade')
         $scope.isEditMode = function () {
             return $scope.editMode;
         };
+
+        $scope.match = function (value1, value2) {
+            if (!value1) value1 = '';
+            if (!value2) value2 = '';
+
+            return value1 + '' == value2 + '';
+        }
 
         $scope.do_update = function (input) {
 

@@ -7,7 +7,8 @@ angular.module('sade', [
     'rzModule',
     'sade.rest',
     'sade.user',
-    'sade.list'
+    'sade.list',
+    'ui.validate'
   ])
   .config(['$locationProvider', '$routeProvider',
     function ($locationProvider, $routeProvider) {
