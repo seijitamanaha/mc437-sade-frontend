@@ -13,6 +13,9 @@
     "ngstorage": "^0.3.11",
     "angular-input-masks": "^2.5.0",
     "angularjs-slider": "^5.8.7",
-    "angular-ui-validate": "^1.2.2"
+    "angular-ui-validate": "^1.2.2",
+    "bootstrap-daterangepicker": "^2.1.24",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.43",
+    "clockpicker": "^0.0.7"
   }
 }

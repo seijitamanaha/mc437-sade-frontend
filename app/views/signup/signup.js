@@ -9,12 +9,48 @@ angular.module('sade')
 
         $scope.input = {};
 
-        $scope.step = $scope.FIRST;
+        $scope.selectedDom = false;
+        $scope.selectedSeg = true;
+        $scope.selectedTer = true;
+        $scope.selectedQua = true;
+        $scope.selectedQui = true;
+        $scope.selectedSex = true;
+        $scope.selectedSab = false;
+
+        $scope.step = 4;//$scope.FIRST;
         $scope.saveAttemp = false;
 
         $scope.message = '';
         $scope.loading = false;
 
+        $scope.toogleDom = function () {
+            $scope.selectedDom = !$scope.selectedDom;
+        }
+
+        $scope.toogleSeg = function () {
+            $scope.selectedSeg = !$scope.selectedSeg;
+        }
+
+        $scope.toogleTer = function () {
+            $scope.selectedTer = !$scope.selectedTer;
+        }
+
+        $scope.toogleQua = function () {
+            $scope.selectedQua = !$scope.selectedQua;
+        }
+
+        $scope.toogleQui = function () {
+            $scope.selectedQui = !$scope.selectedQui;
+        }
+
+        $scope.toogleSex = function () {
+            $scope.selectedSex = !$scope.selectedSex;
+        }
+
+        $scope.toogleSab = function () {
+            $scope.selectedSab = !$scope.selectedSab;
+        }
+        
         $scope.next = function () {
             var valid = true;
 
@@ -116,5 +152,4 @@ angular.module('sade')
             console.error(err);
         });
 
-    }])
-;
+    }]);
