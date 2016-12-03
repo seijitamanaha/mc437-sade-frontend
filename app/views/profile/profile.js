@@ -9,7 +9,7 @@ angular.module('sade')
             name: 'Andre Seiji',
             email: 'naofaznada@email.com',
             cpf: '12312312388',
-            rg: '71238718273',
+            rg: '123123123',
             curriculum: 'http://www.google.com',
             phone: '1238123-123',
             celular: '88888-123',
@@ -51,7 +51,7 @@ angular.module('sade')
         $scope.input = {};
 
         $scope.tab = $scope.PROFILE;
-        $scope.editMode = false;
+        $scope.editMode = true;
 
         $scope.message = '';
         $scope.loading = false;
@@ -117,33 +117,37 @@ angular.module('sade')
 
         $scope.do_update = function (input) {
 
-            $scope.message = '';
-            $scope.loading = true;
+            if ($scope.form.$valid) {
+                console.log('SAVE');
 
-            //TODO
-            var data = {
-                name: input.name,
-                mail: input.email,
-                cpf: input.cpf,
-                password: input.password,
-                rg: input.rg,
-                curriculum: input.curriculum,
-                phone: input.phone,
-                celular: input.celular,
-                course: input.course,
-                institution: input.institution,
-                address: input.address,
-                howMet: input.howMet,
-                skills: $scope.skills
-            };
+                $scope.message = '';
+                $scope.loading = true;
 
-            $User.signup(data).then(function () {
-                $scope.loading = false;
+                //TODO
+                var data = {
+                    name: input.name,
+                    mail: input.email,
+                    cpf: input.cpf,
+                    password: input.password,
+                    rg: input.rg,
+                    curriculum: input.curriculum,
+                    phone: input.phone,
+                    celular: input.celular,
+                    course: input.course,
+                    institution: input.institution,
+                    address: input.address,
+                    howMet: input.howMet,
+                    skills: $scope.skills
+                };
 
-            }).catch(function () {
-                $scope.loading = false;
-                $scope.message = 'Falha ao atualizar ' + (($scope.isProfileTab()) ? 'os dados pessoais.' : 'as habilidades.');
-            });
+                $User.signup(data).then(function () {
+                    $scope.loading = false;
+
+                }).catch(function () {
+                    $scope.loading = false;
+                    $scope.message = 'Falha ao atualizar ' + (($scope.isProfileTab()) ? 'os dados pessoais.' : 'as habilidades.');
+                });
+            }
         };
 
         $scope.resetForm();
