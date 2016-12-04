@@ -386,6 +386,8 @@ body {
 .seven-cols > div {
   padding-right: 5px !important;
   padding-left: 5px !important;
+  min-height: 169px;
+  padding-bottom: 15px;
 }
 
 .seven-cols .label {

@@ -231,7 +231,7 @@
                                 <div class="row">
                                     <div ng-class="{ 'has-error' : ((form.howMet.$touched || saveAttemp) && form.howMet.$invalid) }"
                                          class="control-group col-xs-12">
-                                        <label class="control-label" for="howMet">Como howMet o SADE</label>
+                                        <label class="control-label" for="howMet">Como conheceu o SADE</label>
                                         <div class="controls">
                                     <textarea id="howMet" name="howMet" maxlength="300" rows="3"
                                               ng-model="input.howMet" placeholder="Descreva como conheceu o SADE"
@@ -291,184 +291,184 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="row seven-cols col-xs-12 col-sm-12">
+                                    <div class="seven-cols col-xs-12 col-sm-12">
                                         <div class="col-sm-1 col-xs-6 col-md-1">
-                                            <div ng-class="{ 'selected-day' : selectedDom }">
-                                                <label class="label" ng-click="toogleDom()"
-                                                       ng-class="(selectedDom) ? 'label-primary' : 'label-default'">Domingo</label>
-                                                <div class="clock-row" ng-show="selectedDom">
+                                            <div ng-class="{ 'selected-day' : selectedSun }">
+                                                <label class="label" ng-click="toogleSun()"
+                                                       ng-class="(selectedSun) ? 'label-primary' : 'label-default'">Domingo</label>
+                                                <div class="clock-row" ng-show="selectedSun">
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="startDom"
-                                                                   id="startDom" ng-model="input.startDom" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" data-after="endDom">
+                                                            <input type="text" class="form-control" name="startSun"
+                                                                   id="startSun" ng-model="input.startSun" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endSun">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="clock-row" ng-show="selectedDom">
+                                                <div class="clock-row" ng-show="selectedSun">
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="endDom"
-                                                                   id="endDom" ng-model="input.endDom" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" data-before="startDom">
+                                                            <input type="text" class="form-control" name="endSun"
+                                                                   id="endSun" ng-model="input.endSun" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startSun">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-1 col-xs-6 col-md-1">
-                                            <div ng-class="{ 'selected-day' : selectedSeg }">
-                                                <label class="label" ng-click="toogleSeg()"
-                                                       ng-class="(selectedSeg) ? 'label-primary' : 'label-default'">Segunda</label>
-                                                <div class="clock-row" ng-show="selectedSeg">
+                                            <div ng-class="{ 'selected-day' : selectedMon }">
+                                                <label class="label" ng-click="toogleMon()"
+                                                       ng-class="(selectedMon) ? 'label-primary' : 'label-default'">Segunda</label>
+                                                <div class="clock-row" ng-show="selectedMon">
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="startSeg"
-                                                                   id="startSeg" ng-model="input.startSeg" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" data-after="endSeg">
+                                                            <input type="text" class="form-control" name="startMon"
+                                                                   id="startMon" ng-model="input.startMon" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endMon">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="clock-row" ng-show="selectedSeg">
+                                                <div class="clock-row" ng-show="selectedMon">
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="endSeg"
-                                                                   id="endSeg" ng-model="input.endSeg" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" data-before="startSeg">
+                                                            <input type="text" class="form-control" name="endMon"
+                                                                   id="endMon" ng-model="input.endMon" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startMon">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-1 col-xs-6 col-md-1">
-                                            <div ng-class="{ 'selected-day' : selectedTer }">
-                                                <label class="label" ng-click="toogleTer()"
-                                                       ng-class="(selectedTer) ? 'label-primary' : 'label-default'">Terça</label>
-                                                <div class="clock-row" ng-show="selectedTer">
+                                            <div ng-class="{ 'selected-day' : selectedTue }">
+                                                <label class="label" ng-click="toogleTue()"
+                                                       ng-class="(selectedTue) ? 'label-primary' : 'label-default'">Terça</label>
+                                                <div class="clock-row" ng-show="selectedTue">
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="startTer"
-                                                                   id="startTer" ng-model="input.startTer" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" data-after="endTer">
+                                                            <input type="text" class="form-control" name="startTue"
+                                                                   id="startTue" ng-model="input.startTue" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endTue">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="clock-row" ng-show="selectedTer">
+                                                <div class="clock-row" ng-show="selectedTue">
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="endTer"
-                                                                   id="endTer" ng-model="input.endTer" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" data-before="startTer">
+                                                            <input type="text" class="form-control" name="endTue"
+                                                                   id="endTue" ng-model="input.endTue" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startTue">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-1 col-xs-6 col-md-1">
-                                            <div ng-class="{ 'selected-day' : selectedQua }">
-                                                <label class="label" ng-click="toogleQua()"
-                                                       ng-class="(selectedQua) ? 'label-primary' : 'label-default'">Quarta</label>
-                                                <div class="clock-row" ng-show="selectedQua">
+                                            <div ng-class="{ 'selected-day' : selectedWed }">
+                                                <label class="label" ng-click="toogleWed()"
+                                                       ng-class="(selectedWed) ? 'label-primary' : 'label-default'">Quarta</label>
+                                                <div class="clock-row" ng-show="selectedWed">
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="startQua"
-                                                                   id="startQua" ng-model="input.startQua" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" data-after="endQua">
+                                                            <input type="text" class="form-control" name="startWed"
+                                                                   id="startWed" ng-model="input.startWed" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endWed">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="clock-row" ng-show="selectedQua">
+                                                <div class="clock-row" ng-show="selectedWed">
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="endQua"
-                                                                   id="endQua" ng-model="input.endQua" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" data-before="startQua">
+                                                            <input type="text" class="form-control" name="endWed"
+                                                                   id="endWed" ng-model="input.endWed" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startWed">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-1 col-xs-6 col-md-1">
-                                            <div ng-class="{ 'selected-day' : selectedQui }">
-                                                <label class="label" ng-click="toogleQui()"
-                                                       ng-class="(selectedQui) ? 'label-primary' : 'label-default'">Quinta</label>
-                                                <div class="clock-row" ng-show="selectedQui">
+                                            <div ng-class="{ 'selected-day' : selectedThu }">
+                                                <label class="label" ng-click="toogleThu()"
+                                                       ng-class="(selectedThu) ? 'label-primary' : 'label-default'">Quinta</label>
+                                                <div class="clock-row" ng-show="selectedThu">
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="startQui"
-                                                                   id="startQui" ng-model="input.startQui" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" data-after="endQui">
+                                                            <input type="text" class="form-control" name="startThu"
+                                                                   id="startThu" ng-model="input.startThu" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endThu">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="clock-row" ng-show="selectedQui">
+                                                <div class="clock-row" ng-show="selectedThu">
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="endQui"
-                                                                   id="endQui" ng-model="input.endQui" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" data-before="startQui">
+                                                            <input type="text" class="form-control" name="endThu"
+                                                                   id="endThu" ng-model="input.endThu" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startThu">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-1 col-xs-6 col-md-1">
-                                            <div ng-class="{ 'selected-day' : selectedSex }">
-                                                <label class="label" ng-click="toogleSex()"
-                                                       ng-class="(selectedSex) ? 'label-primary' : 'label-default'">Sexta</label>
-                                                <div class="clock-row" ng-show="selectedSex">
+                                            <div ng-class="{ 'selected-day' : selectedFri }">
+                                                <label class="label" ng-click="toogleFri()"
+                                                       ng-class="(selectedFri) ? 'label-primary' : 'label-default'">Sexta</label>
+                                                <div class="clock-row" ng-show="selectedFri">
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="startSex"
-                                                                   id="startSex" ng-model="input.startSex" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" data-after="endSex">
+                                                            <input type="text" class="form-control" name="startFri"
+                                                                   id="startFri" ng-model="input.startFri" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endFri">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="clock-row" ng-show="selectedSex">
+                                                <div class="clock-row" ng-show="selectedFri">
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="endSex"
-                                                                   id="endSex" ng-model="input.endSex" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" data-after="startSex">
+                                                            <input type="text" class="form-control" name="endFri"
+                                                                   id="endFri" ng-model="input.endFri" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-after="startFri">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-1 col-xs-6 col-md-1">
-                                            <div ng-class="{ 'selected-day' : selectedSab }">
-                                                <label class="label" ng-click="toogleSab()"
-                                                       ng-class="(selectedSab) ? 'label-primary' : 'label-default'">Sábado</label>
-                                                <div class="clock-row" ng-show="selectedSab">
+                                            <div ng-class="{ 'selected-day' : selectedSat }">
+                                                <label class="label" ng-click="toogleSat()"
+                                                       ng-class="(selectedSat) ? 'label-primary' : 'label-default'">Sábado</label>
+                                                <div class="clock-row" ng-show="selectedSat">
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="startSab"
-                                                                   id="startSab" ng-model="input.startSab" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" data-after="endSab">
+                                                            <input type="text" class="form-control" name="startSat"
+                                                                   id="startSat" ng-model="input.startSat" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endSat">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="clock-row" ng-show="selectedSab">
+                                                <div class="clock-row" ng-show="selectedSat">
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="endSab"
-                                                                   id="endSab" ng-model="input.endSab" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" data-before="startSab">
+                                                            <input type="text" class="form-control" name="endSat"
+                                                                   id="endSat" ng-model="input.endSat" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startSat">
                                                         </div>
                                                     </div>
                                                 </div>

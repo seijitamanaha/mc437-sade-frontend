@@ -8,7 +8,7 @@ angular.module('sade')
         $scope.LAST = 4;
         $scope.START = '08:00';
         $scope.END = '18:00';
-        var weekDays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
+        var weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
         $scope.input = {};
 
@@ -18,8 +18,8 @@ angular.module('sade')
             $scope['selected' + d] = true;
         });
 
-        $scope.selectedDom = false;
-        $scope.selectedSab = false;
+        $scope.selectedSun = false;
+        $scope.selectedSat = false;
 
         $scope.step = $scope.FIRST;
         $scope.saveAttemp = false;
@@ -27,32 +27,32 @@ angular.module('sade')
         $scope.message = '';
         $scope.loading = false;
 
-        $scope.toogleDom = function () {
-            $scope.selectedDom = !$scope.selectedDom;
+        $scope.toogleSun = function () {
+            $scope.selectedSun = !$scope.selectedSun;
         }
 
-        $scope.toogleSeg = function () {
-            $scope.selectedSeg = !$scope.selectedSeg;
+        $scope.toogleMon = function () {
+            $scope.selectedMon = !$scope.selectedMon;
         }
 
-        $scope.toogleTer = function () {
-            $scope.selectedTer = !$scope.selectedTer;
+        $scope.toogleTue = function () {
+            $scope.selectedTue = !$scope.selectedTue;
         }
 
-        $scope.toogleQua = function () {
-            $scope.selectedQua = !$scope.selectedQua;
+        $scope.toogleWed = function () {
+            $scope.selectedWed = !$scope.selectedWed;
         }
 
-        $scope.toogleQui = function () {
-            $scope.selectedQui = !$scope.selectedQui;
+        $scope.toogleThu = function () {
+            $scope.selectedThu = !$scope.selectedThu;
         }
 
-        $scope.toogleSex = function () {
-            $scope.selectedSex = !$scope.selectedSex;
+        $scope.toogleFri = function () {
+            $scope.selectedFri = !$scope.selectedFri;
         }
 
-        $scope.toogleSab = function () {
-            $scope.selectedSab = !$scope.selectedSab;
+        $scope.toogleSat = function () {
+            $scope.selectedSat = !$scope.selectedSat;
         }
 
         $scope.next = function () {
