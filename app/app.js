@@ -82,6 +82,43 @@ angular.module('sade', [
                     align: 'top',
                     autoclose: true
                 });
+
+                if ($(element).attr('data-before')) {
+
+                    $(element).on('change', function(){
+
+                        var before = $(this).attr('data-before');
+                        before = $('#' + before);
+
+                        var date1 = before.val().split(':');
+                        var date2 = $(this).val().split(':');
+
+                        date1 = moment().startOf('day').add(date1[0],'hours').add(date1[1], 'minutes');
+                        date2 = moment().startOf('day').add(date2[0],'hours').add(date2[1], 'minutes');
+
+                        if (date1.isAfter(date2)) {
+                            $(this).val(before.val());
+                        }
+                    });
+                } else if ($(element).attr('data-after')) {
+
+                    $(element).on('change', function(){
+
+                        var after = $(this).attr('data-after');
+                        after = $('#' + after);
+
+                        var date1 = $(this).val().split(':');
+                        var date2 = after.val().split(':');
+
+                        date1 = moment().startOf('day').add(date1[0],'hours').add(date1[1], 'minutes');
+                        date2 = moment().startOf('day').add(date2[0],'hours').add(date2[1], 'minutes');
+
+                        if (date1.isAfter(date2)) {
+                            $(this).val(after.val());
+                        }
+                    });
+                }
+
             }
         };
     })

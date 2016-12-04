@@ -277,7 +277,7 @@
                                     <div class="control-group col-xs-12 col-sm-4 col-md-3">
                                         <div class="controls">
                                             <input type="text" id="availability" name="availability"
-                                                   class="form-control time-control" ng-model="availability"
+                                                   class="form-control time-control" ng-model="input.availability"
                                                    daterangepicker/>
                                         </div>
                                     </div>
@@ -300,9 +300,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="start-dom"
-                                                                   id="start-dom" ng-model="input.startDom" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" ng-blur="verifyClock(input.startDom)">
+                                                            <input type="text" class="form-control" name="startDom"
+                                                                   id="startDom" ng-model="input.startDom" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endDom">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -310,9 +310,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="end-dom"
-                                                                   id="end-dom" ng-model="input.endDom" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" ng-blur="verifyClock(input.endDom, input.startDom)">
+                                                            <input type="text" class="form-control" name="endDom"
+                                                                   id="endDom" ng-model="input.endDom" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startDom">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -326,9 +326,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="start-seg"
-                                                                   id="start-seg" ng-model="input.startSeg" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" ng-blur="verifyClock(input.startSeg)">
+                                                            <input type="text" class="form-control" name="startSeg"
+                                                                   id="startSeg" ng-model="input.startSeg" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endSeg">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -336,9 +336,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="end-seg"
-                                                                   id="end-seg" ng-model="input.endSeg" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" ng-blur="verifyClock(input.endSeg, input.startSeg)">
+                                                            <input type="text" class="form-control" name="endSeg"
+                                                                   id="endSeg" ng-model="input.endSeg" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startSeg">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -352,9 +352,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="start-ter"
-                                                                   id="start-ter" ng-model="input.startTer" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" ng-blur="verifyClock(input.startTer)">
+                                                            <input type="text" class="form-control" name="startTer"
+                                                                   id="startTer" ng-model="input.startTer" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endTer">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -362,9 +362,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="end-ter"
-                                                                   id="end-ter" ng-model="input.endTer" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" ng-blur="verifyClock(input.endTer, input.startTer)">
+                                                            <input type="text" class="form-control" name="endTer"
+                                                                   id="endTer" ng-model="input.endTer" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startTer">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -378,9 +378,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="start-qua"
-                                                                   id="start-qua" ng-model="input.startQua" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" ng-blur="verifyClock(input.startQua)">
+                                                            <input type="text" class="form-control" name="startQua"
+                                                                   id="startQua" ng-model="input.startQua" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endQua">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -388,9 +388,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="end-qua"
-                                                                   id="end-qua" ng-model="input.endQua" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" ng-blur="verifyClock(input.endQua, input.startQua)">
+                                                            <input type="text" class="form-control" name="endQua"
+                                                                   id="endQua" ng-model="input.endQua" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startQua">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -404,9 +404,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="start-qui"
-                                                                   id="start-qui" ng-model="input.startQui" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" ng-blur="verifyClock(input.startQui)">
+                                                            <input type="text" class="form-control" name="startQui"
+                                                                   id="startQui" ng-model="input.startQui" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endQui">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -414,9 +414,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="end-qui"
-                                                                   id="end-qui" ng-model="input.endQui" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" ng-blur="verifyClock(input.endQui, input.startQui)">
+                                                            <input type="text" class="form-control" name="endQui"
+                                                                   id="endQui" ng-model="input.endQui" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startQui">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -430,9 +430,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="start-sex"
-                                                                   id="start-sex" ng-model="input.startSex" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" ng-blur="verifyClock(input.startSex)">
+                                                            <input type="text" class="form-control" name="startSex"
+                                                                   id="startSex" ng-model="input.startSex" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endSex">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -440,9 +440,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="end-sex"
-                                                                   id="end-sex" ng-model="input.endSex" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" ng-blur="verifyClock(input.endSex, input.startSex)">
+                                                            <input type="text" class="form-control" name="endSex"
+                                                                   id="endSex" ng-model="input.endSex" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-after="startSex">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -456,9 +456,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="start-sab"
-                                                                   id="start-sab" ng-model="input.startSab" clockpicker ng-readonly="true"
-                                                                   defaultValue="08:00" ng-blur="verifyClock(input.startSab)">
+                                                            <input type="text" class="form-control" name="startSab"
+                                                                   id="startSab" ng-model="input.startSab" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endSab">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -466,9 +466,9 @@
                                                     <div class="control-group">
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
-                                                            <input type="text" class="form-control" name="end-sab"
-                                                                   id="end-sab" ng-model="input.endSab" clockpicker ng-readonly="true"
-                                                                   defaultValue="18:00" ng-blur="verifyClock(input.endSab, input.startSab)">
+                                                            <input type="text" class="form-control" name="endSab"
+                                                                   id="endSab" ng-model="input.endSab" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startSab">
                                                         </div>
                                                     </div>
                                                 </div>

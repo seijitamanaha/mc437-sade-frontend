@@ -8,34 +8,20 @@ angular.module('sade')
         $scope.LAST = 4;
         $scope.START = '08:00';
         $scope.END = '18:00';
+        var weekDays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
 
-        $scope.input = {
-            startDom: $scope.START,
-            startSeg: $scope.START,
-            startTer: $scope.START,
-            startQua: $scope.START,
-            startQui: $scope.START,
-            startSex: $scope.START,
-            startSab: $scope.START,
+        $scope.input = {};
 
-            endDom: $scope.END,
-            endSeg: $scope.END,
-            endTer: $scope.END,
-            endQua: $scope.END,
-            endQui: $scope.END,
-            endSex: $scope.END,
-            endSab: $scope.END
-        };
+        weekDays.forEach(function(d) {
+            $scope.input['start' + d] = $scope.START;
+            $scope.input['end' + d] = $scope.END;
+            $scope['selected' + d] = true;
+        });
 
         $scope.selectedDom = false;
-        $scope.selectedSeg = true;
-        $scope.selectedTer = true;
-        $scope.selectedQua = true;
-        $scope.selectedQui = true;
-        $scope.selectedSex = true;
         $scope.selectedSab = false;
 
-        $scope.step = 4;//$scope.FIRST;
+        $scope.step = $scope.FIRST;
         $scope.saveAttemp = false;
 
         $scope.message = '';
@@ -67,22 +53,6 @@ angular.module('sade')
 
         $scope.toogleSab = function () {
             $scope.selectedSab = !$scope.selectedSab;
-        }
-
-        $scope.verifyClock = function (element, compare) {
-            //TODO
-            return;
-            console.log(element);
-
-            if (compare) {
-                console.log(compare);
-
-                var date1 = element.split(':');
-                var date2 = element.split(':');
-
-                moment().startOf('day').add(date1[0],'hours').add(date1[1], 'minutes');
-                moment().startOf('day').add(date2[0],'hours').add(date2[1], 'minutes');
-            }
         }
 
         $scope.next = function () {
@@ -149,6 +119,32 @@ angular.module('sade')
             $scope.message = '';
             $scope.loading = true;
 
+            var formatDate = function (s) {
+                s = s.trim().split('/');
+                return s[2] + '-' + s[1] + '-' + s[0];
+            };
+
+            var split = $scope.input.availability.split('-');
+            var availablePeriod = {
+                start: moment(formatDate(split[0])).format('YYYY-MM-DD'),
+                end: moment(formatDate(split[1])).format('YYYY-MM-DD')
+            };
+
+            var availableDays = {};
+            weekDays.forEach(function(d) {
+                var start = $scope.input['start' + d];
+                var end = $scope.input['end' + d];
+                var isAvailable = $scope['selected' + d] && start != end;
+                availableDays[d] = {
+                    isAvailable: isAvailable
+                };
+
+                if (isAvailable) {
+                    availableDays[d].start = start;
+                    availableDays[d].end = end;
+                }
+            });
+
             var data = {
                 name: input.name,
                 mail: input.email,
@@ -161,7 +157,9 @@ angular.module('sade')
                 institution: input.instituicao,
                 address: input.endereco,
                 howMet: input.howMet,
-                skills: $scope.skills
+                skills: $scope.skills,
+                availablePeriod: availablePeriod,
+                availableDays: availableDays
             };
 
             $User.signup(data).then(function () {
