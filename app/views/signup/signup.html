@@ -1,3 +1,10 @@
+<style>
+
+    .clock-row input[readonly] {
+        background-color: white !important;
+    }
+</style>
+
 <div class="container signup-form">
     <div class="row">
         <div class="col-xs-12" style="padding-top: 40px;">
@@ -294,7 +301,7 @@
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="start-dom"
-                                                                   id="start-dom" ng-model="input.startDom" clockpicker ui-time-mask
+                                                                   id="start-dom" ng-model="input.startDom" clockpicker ng-readonly="true"
                                                                    defaultValue="08:00" ng-blur="verifyClock(input.startDom)">
                                                         </div>
                                                     </div>
@@ -304,7 +311,7 @@
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="end-dom"
-                                                                   id="end-dom" ng-model="input.endDom" clockpicker ui-time-mask
+                                                                   id="end-dom" ng-model="input.endDom" clockpicker ng-readonly="true"
                                                                    defaultValue="18:00" ng-blur="verifyClock(input.endDom, input.startDom)">
                                                         </div>
                                                     </div>
@@ -320,7 +327,7 @@
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="start-seg"
-                                                                   id="start-seg" ng-model="input.startSeg" clockpicker ui-time-mask
+                                                                   id="start-seg" ng-model="input.startSeg" clockpicker ng-readonly="true"
                                                                    defaultValue="08:00" ng-blur="verifyClock(input.startSeg)">
                                                         </div>
                                                     </div>
@@ -330,7 +337,7 @@
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="end-seg"
-                                                                   id="end-seg" ng-model="input.endSeg" clockpicker ui-time-mask
+                                                                   id="end-seg" ng-model="input.endSeg" clockpicker ng-readonly="true"
                                                                    defaultValue="18:00" ng-blur="verifyClock(input.endSeg, input.startSeg)">
                                                         </div>
                                                     </div>
@@ -346,7 +353,7 @@
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="start-ter"
-                                                                   id="start-ter" ng-model="input.startTer" clockpicker ui-time-mask
+                                                                   id="start-ter" ng-model="input.startTer" clockpicker ng-readonly="true"
                                                                    defaultValue="08:00" ng-blur="verifyClock(input.startTer)">
                                                         </div>
                                                     </div>
@@ -356,7 +363,7 @@
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="end-ter"
-                                                                   id="end-ter" ng-model="input.endTer" clockpicker ui-time-mask
+                                                                   id="end-ter" ng-model="input.endTer" clockpicker ng-readonly="true"
                                                                    defaultValue="18:00" ng-blur="verifyClock(input.endTer, input.startTer)">
                                                         </div>
                                                     </div>
@@ -372,7 +379,7 @@
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="start-qua"
-                                                                   id="start-qua" ng-model="input.startQua" clockpicker ui-time-mask
+                                                                   id="start-qua" ng-model="input.startQua" clockpicker ng-readonly="true"
                                                                    defaultValue="08:00" ng-blur="verifyClock(input.startQua)">
                                                         </div>
                                                     </div>
@@ -382,7 +389,7 @@
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="end-qua"
-                                                                   id="end-qua" ng-model="input.endQua" clockpicker ui-time-mask
+                                                                   id="end-qua" ng-model="input.endQua" clockpicker ng-readonly="true"
                                                                    defaultValue="18:00" ng-blur="verifyClock(input.endQua, input.startQua)">
                                                         </div>
                                                     </div>
@@ -398,7 +405,7 @@
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="start-qui"
-                                                                   id="start-qui" ng-model="input.startQui" clockpicker ui-time-mask
+                                                                   id="start-qui" ng-model="input.startQui" clockpicker ng-readonly="true"
                                                                    defaultValue="08:00" ng-blur="verifyClock(input.startQui)">
                                                         </div>
                                                     </div>
@@ -408,7 +415,7 @@
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="end-qui"
-                                                                   id="end-qui" ng-model="input.endQui" clockpicker ui-time-mask
+                                                                   id="end-qui" ng-model="input.endQui" clockpicker ng-readonly="true"
                                                                    defaultValue="18:00" ng-blur="verifyClock(input.endQui, input.startQui)">
                                                         </div>
                                                     </div>
@@ -424,7 +431,7 @@
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="start-sex"
-                                                                   id="start-sex" ng-model="input.startSex" clockpicker ui-time-mask
+                                                                   id="start-sex" ng-model="input.startSex" clockpicker ng-readonly="true"
                                                                    defaultValue="08:00" ng-blur="verifyClock(input.startSex)">
                                                         </div>
                                                     </div>
@@ -434,7 +441,7 @@
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="end-sex"
-                                                                   id="end-sex" ng-model="input.endSex" clockpicker ui-time-mask
+                                                                   id="end-sex" ng-model="input.endSex" clockpicker ng-readonly="true"
                                                                    defaultValue="18:00" ng-blur="verifyClock(input.endSex, input.startSex)">
                                                         </div>
                                                     </div>
@@ -450,7 +457,7 @@
                                                         <label class="control-label">De</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="start-sab"
-                                                                   id="start-sab" ng-model="input.startSab" clockpicker ui-time-mask
+                                                                   id="start-sab" ng-model="input.startSab" clockpicker ng-readonly="true"
                                                                    defaultValue="08:00" ng-blur="verifyClock(input.startSab)">
                                                         </div>
                                                     </div>
@@ -460,7 +467,7 @@
                                                         <label class="control-label">Até</label>
                                                         <div class="controls">
                                                             <input type="text" class="form-control" name="end-sab"
-                                                                   id="end-sab" ng-model="input.endSab" clockpicker ui-time-mask
+                                                                   id="end-sab" ng-model="input.endSab" clockpicker ng-readonly="true"
                                                                    defaultValue="18:00" ng-blur="verifyClock(input.endSab, input.startSab)">
                                                         </div>
                                                     </div>

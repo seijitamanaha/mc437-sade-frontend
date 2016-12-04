@@ -6,8 +6,26 @@ angular.module('sade')
 
         $scope.FIRST = 1;
         $scope.LAST = 4;
+        $scope.START = '08:00';
+        $scope.END = '18:00';
 
-        $scope.input = {};
+        $scope.input = {
+            startDom: $scope.START,
+            startSeg: $scope.START,
+            startTer: $scope.START,
+            startQua: $scope.START,
+            startQui: $scope.START,
+            startSex: $scope.START,
+            startSab: $scope.START,
+
+            endDom: $scope.END,
+            endSeg: $scope.END,
+            endTer: $scope.END,
+            endQua: $scope.END,
+            endQui: $scope.END,
+            endSex: $scope.END,
+            endSab: $scope.END
+        };
 
         $scope.selectedDom = false;
         $scope.selectedSeg = true;
@@ -52,10 +70,18 @@ angular.module('sade')
         }
 
         $scope.verifyClock = function (element, compare) {
+            //TODO
+            return;
             console.log(element);
 
             if (compare) {
                 console.log(compare);
+
+                var date1 = element.split(':');
+                var date2 = element.split(':');
+
+                moment().startOf('day').add(date1[0],'hours').add(date1[1], 'minutes');
+                moment().startOf('day').add(date2[0],'hours').add(date2[1], 'minutes');
             }
         }
 
