@@ -1,7 +1,7 @@
 {
   "name": "sade",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Sistema de Acompanhamento de Desenvolvedores Externos",
   "homepage": "https://github.com/seijitamanaha/mc437-sade-frontend",
   "license": "MIT",
