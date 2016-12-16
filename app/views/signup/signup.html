@@ -1,8 +1,15 @@
+<style>
+
+    .clock-row input[readonly] {
+        background-color: white !important;
+    }
+</style>
+
 <div class="container signup-form">
     <div class="row">
         <div class="col-xs-12" style="padding-top: 40px;">
 
-            <div class="container">
+            <div>
                 <div class="process">
                     <div class="process-row">
                         <div class="process-step">
@@ -24,7 +31,14 @@
                             <p class="hidden-xs">Habilidades</p>
                         </div>
                         <div class="process-step">
-                            <button type="button" ng-class="(step == 4) ? 'btn-success' : 'btn-default'"
+                            <button type="button" ng-class="(step >= 4) ? 'btn-success' : 'btn-default'"
+                                    class="btn btn-circle" disabled="disabled">
+                                <i class="fa fa-calendar"></i></button>
+                            <p class="hidden-xs">Disponibilidade</p>
+                        </div>
+
+                        <div class="process-step">
+                            <button type="button" ng-class="(step == 5) ? 'btn-success' : 'btn-default'"
                                     class="btn btn-circle" disabled="disabled">
                                 <i class="fa fa-handshake-o"></i></button>
                             <p class="hidden-xs">Done!</p>
@@ -34,190 +48,470 @@
             </div>
 
             <div class="panel-body">
-                <form role="form" ng-if="step < 4"
-                      ng-submit="signup(input)">
-                    <fieldset>
-                        <div class="row" ng-if="step == 1">
+                <div ng-class="{ hide : isDone() }">
+                    <form role="form" name="form" id="form" class="form-profile form-horizontal" novalidate>
+                        <fieldset>
+                            <div ng-if="step == 1">
 
-                            <h3>Pré-cadastro</h3>
+                                <div class="row">
+                                    <h3>Pré-cadastro</h3>
+                                </div>
 
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="name">Nome completo</label>
-                                <div class="controls">
-                                    <input id="name" name="name" type="text" placeholder="Nome completo"
-                                           ng-model="input.name" class="form-control required">
+                                <div class="row">
+                                    <div ng-class="{ 'has-error' : ((form.name.$touched || saveAttemp) && form.name.$invalid) }"
+                                         class="control-group col-xs-12 col-sm-6">
+                                        <label class="control-label" for="name">Nome completo</label>
+                                        <div class="controls">
+                                            <input id="name" name="name" type="text" placeholder="Nome completo"
+                                                   ng-model="input.name" class="form-control required" required>
+                                            <span class="label label-danger"
+                                                  ng-show="(form.name.$touched || saveAttemp) && form.name.$invalid">Nome completo é obrigatório.</span>
+                                        </div>
+                                    </div>
+
+                                    <div ng-class="{ 'has-error' : ((form.cpf.$touched || saveAttemp) && form.cpf.$invalid) }"
+                                         class="control-group col-xs-12 col-sm-6">
+                                        <label class="control-label" for="cpf">CPF</label>
+                                        <div class="controls">
+                                            <input id="cpf" name="cpf" type="text"
+                                                   ng-model="input.cpf" placeholder="CPF" class="form-control required"
+                                                   required
+                                                   ui-br-cpf-mask="">
+                                            <span class="label label-danger"
+                                                  ng-show="(form.cpf.$touched || saveAttemp) && form.cpf.$invalid">Digite um CPF válido.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div ng-class="{ 'has-error' : ((form.email.$touched || saveAttemp) && form.email.$invalid) }"
+                                         class="control-group col-xs-12 col-sm-6">
+                                        <label class="control-label" for="email">E-mail</label>
+                                        <div class="controls">
+                                            <input id="email" name="email" type="email" placeholder="E-mail"
+                                                   ng-model="input.email" class="form-control required" required>
+                                            <span class="label label-danger"
+                                                  ng-show="(form.email.$touched || saveAttemp) && form.email.$invalid">Digite um e-mail válido.</span>
+                                        </div>
+                                    </div>
+
+                                    <div ng-class="{ 'has-error' : ((saveAttemp || form.email2.$touched) && form.email2.$invalid ) }"
+                                         class="control-group col-xs-12 col-sm-6">
+                                        <label class="control-label" for="email2">Confirmação de e-mail</label>
+                                        <div class="controls">
+                                            <input id="email2" name="email2" type="text"
+                                                   placeholder="Confirmação de e-mail"
+                                                   ng-model="input.email2" class="form-control required"
+                                                   ui-validate="'match($value, input.email)'"
+                                                   ui-validate-watch="'input.email'">
+                                            <span class="label label-danger"
+                                                  ng-show="(saveAttemp || form.email2.$touched) && form.email2.$invalid">Os e-mails não são iguais.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div ng-class="{ 'has-error' : ((form.senha.$touched || saveAttemp) && form.senha.$invalid) }"
+                                         class="control-group col-xs-12 col-sm-6">
+                                        <label class="control-label" for="senha">Senha</label>
+                                        <div class="controls">
+                                            <input id="senha" name="senha" type="password"
+                                                   ng-model="input.senha" placeholder="Senha"
+                                                   class="form-control required" required>
+                                            <span class="label label-danger"
+                                                  ng-show="(form.senha.$touched || saveAttemp) && form.senha.$invalid">Senha é obrigatório.</span>
+                                        </div>
+                                    </div>
+
+                                    <div ng-class="{ 'has-error' : ((saveAttemp || form.senha2.$touched) && form.senha2.$invalid) }"
+                                         class="control-group col-xs-12 col-sm-6">
+                                        <label class="control-label" for="senha2">Confirmação de senha</label>
+                                        <div class="controls">
+                                            <input id="senha2" name="senha2" type="password"
+                                                   ng-model="input.senha2" placeholder="Confirmação de senha"
+                                                   class="form-control required"
+                                                   ui-validate="'match($value, input.senha)'"
+                                                   ui-validate-watch="'input.senha'">
+                                            <span class="label label-danger"
+                                                  ng-show="(saveAttemp || form.senha2.$touched) && form.senha2.$invalid">As senhas não são iguais.</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="cpf">CPF</label>
-                                <div class="controls">
-                                    <input id="cpf" name="cpf" type="text"
-                                           ng-model="input.cpf" placeholder="CPF" class="form-control required"
-                                           ui-br-cpf-mask="">
+                            <div ng-if="step == 2">
+
+                                <div class="row">
+                                    <h3>Dados pessoais</h3>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="email">E-mail</label>
-                                <div class="controls">
-                                    <input id="email" name="email" type="text" placeholder="E-mail"
-                                           ng-model="input.email" class="form-control required">
+                                <div class="row">
+                                    <div ng-class="{ 'has-error' : ((form.rg.$touched || saveAttemp) && form.rg.$invalid) }"
+                                         class="control-group col-xs-12 col-sm-6">
+                                        <label class="control-label" for="rg">Número do RG</label>
+                                        <div class="controls">
+                                            <input id="rg" name="rg" type="text"
+                                                   ng-model="input.rg" placeholder="Número do RG"
+                                                   class="form-control required" required maxlength="15">
+                                            <span class="label label-danger"
+                                                  ng-show="(form.rg.$touched || saveAttemp) && form.rg.$invalid">RG é obrigatório.</span>
+                                        </div>
+                                    </div>
+
+                                    <div ng-class="{ 'has-error' : ((form.tel.$touched || saveAttemp) && form.tel.$invalid) }"
+                                         class="control-group col-xs-12 col-sm-6">
+                                        <label class="control-label" for="tel">Telefone</label>
+                                        <div class="controls">
+                                            <input id="tel" name="tel" type="text"
+                                                   ng-model="input.tel" placeholder="Telefone"
+                                                   class="form-control required" ui-br-phone-number required>
+                                            <span class="label label-danger"
+                                                  ng-show="(form.tel.$touched || saveAttemp) && form.tel.$invalid">Telefone é obrigatório.</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="email2">Confirmação de e-mail</label>
-                                <div class="controls">
-                                    <input id="email2" name="email2" type="text" placeholder="Confirmação de e-mail"
-                                           ng-model="input.email2" class="form-control required">
+                                <div class="row">
+                                    <div ng-class="{ 'has-error' : ((form.curriculo.$touched || saveAttemp) && form.curriculo.$invalid) }"
+                                         class="control-group col-xs-12 col-sm-12">
+                                        <label class="control-label" for="curriculo">Link para download do
+                                            currículo</label>
+                                        <div class="controls">
+                                            <input id="curriculo" name="curriculo" type="text"
+                                                   ng-model="input.curriculo"
+                                                   placeholder="Link para download do currículo"
+                                                   class="form-control required" required>
+                                            <span class="label label-danger"
+                                                  ng-show="(form.curriculo.$touched || saveAttemp) && form.curriculo.$invalid">Link é obrigatório.</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="senha">Senha</label>
-                                <div class="controls">
-                                    <input id="senha" name="senha" type="password"
-                                           ng-model="input.senha" placeholder="Senha" class="form-control required">
+                                <div class="row">
+                                    <div ng-class="{ 'has-error' : ((form.instituicao.$touched || saveAttemp) && form.instituicao.$invalid) }"
+                                         class="control-group col-xs-12 col-sm-6">
+                                        <label class="control-label" for="instituicao">Instituição</label>
+                                        <div class="controls">
+                                            <input id="instituicao" name="instituicao" type="text"
+                                                   ng-model="input.instituicao" placeholder="Instituição"
+                                                   class="form-control required" required>
+                                            <span class="label label-danger"
+                                                  ng-show="(form.instituicao.$touched || saveAttemp) && form.instituicao.$invalid">Instituição é obrigatório.</span>
+                                        </div>
+                                    </div>
+
+                                    <div ng-class="{ 'has-error' : ((form.curso.$touched || saveAttemp) && form.curso.$invalid) }"
+                                         class="control-group col-xs-12 col-sm-6">
+                                        <label class="control-label" for="curso">Curso</label>
+                                        <div class="controls">
+                                            <input id="curso" name="curso" type="text"
+                                                   ng-model="input.curso" placeholder="Curso"
+                                                   class="form-control required" required>
+                                            <span class="label label-danger"
+                                                  ng-show="(form.curso.$touched || saveAttemp) && form.curso.$invalid">Curso é obrigatório.</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="senha2">Confirmação de senha</label>
-                                <div class="controls">
-                                    <input id="senha2" name="senha2" type="password"
-                                           ng-model="input.senha2" placeholder="Confirmação de senha"
-                                           class="form-control required">
+                                <div class="row">
+                                    <div ng-class="{ 'has-error' : ((form.endereco.$touched || saveAttemp) && form.endereco.$invalid) }"
+                                         class="control-group col-xs-12">
+                                        <label class="control-label" for="endereco">Endereço</label>
+                                        <div class="controls">
+                                            <input id="endereco" name="endereco" type="text"
+                                                   ng-model="input.endereco"
+                                                   placeholder="UF - Cidade, Rua, Número, Complemento"
+                                                   class="form-control required" required>
+                                            <span class="label label-danger"
+                                                  ng-show="(form.endereco.$touched || saveAttemp) && form.endereco.$invalid">Endereço é obrigatório.</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                        </div>
-
-                        <div class="row" ng-if="step == 2">
-
-                            <h3>Dados pessoais</h3>
-
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="rg">Número do RG</label>
-                                <div class="controls">
-                                    <input id="rg" name="rg" type="number"
-                                           ng-model="input.rg" placeholder="Número do RG"
-                                           class="form-control required">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="curriculo">Link para download do currículo</label>
-                                <div class="controls">
-                                    <input id="curriculo" name="curriculo" type="text"
-                                           ng-model="input.curriculo" placeholder="Link para download do currículo"
-                                           class="form-control required">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="tel">Telefone</label>
-                                <div class="controls">
-                                    <input id="tel" name="tel" type="text"
-                                           ng-model="input.tel" placeholder="Telefone"
-                                           class="form-control required" ui-br-phone-number>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="celular">Celular</label>
-                                <div class="controls">
-                                    <input id="celular" name="celular" type="text"
-                                           ng-model="input.celular" placeholder="Celular"
-                                           class="form-control required" ui-br-phone-number>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="instituicao">Instituição</label>
-                                <div class="controls">
-                                    <input id="instituicao" name="instituicao" type="text"
-                                           ng-model="input.instituicao" placeholder="Instituição"
-                                           class="form-control required">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12 col-sm-6">
-                                <label class="control-label" for="curso">Curso</label>
-                                <div class="controls">
-                                    <input id="curso" name="curso" type="text"
-                                           ng-model="input.curso" placeholder="Curso"
-                                           class="form-control required">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12">
-                                <label class="control-label" for="endereco">Endereço</label>
-                                <div class="controls">
-                                    <input id="endereco" name="endereco" type="text"
-                                           ng-model="input.endereco" placeholder="Endereço"
-                                           class="form-control required">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-xs-12">
-                                <label class="control-label" for="howMet">Como howMet o SADE</label>
-                                <div class="controls">
+                                <div class="row">
+                                    <div ng-class="{ 'has-error' : ((form.howMet.$touched || saveAttemp) && form.howMet.$invalid) }"
+                                         class="control-group col-xs-12">
+                                        <label class="control-label" for="howMet">Como conheceu o SADE</label>
+                                        <div class="controls">
                                     <textarea id="howMet" name="howMet" maxlength="300" rows="3"
-                                              ng-model="input.howMet" placeholder="Descreva como howMet o SADE"
-                                              class="form-control required"></textarea>
+                                              ng-model="input.howMet" placeholder="Descreva como conheceu o SADE"
+                                              class="form-control required" required></textarea>
+                                            <span class="label label-danger"
+                                                  ng-show="(form.howMet.$touched || saveAttemp) && form.howMet.$invalid">Como conheceu é obrigatório.</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                        </div>
+                            <div ng-if="step == 3" class="skills-container">
+                                <div class="price-box">
+                                    <h3>Habilidades</h3>
 
-                        <div ng-if="step == 3"  class="skills-container">
-                            <div class="price-box">
-                                <h3>Habilidades</h3>
+                                    <div class="form-pricing form-horizontal" ng-repeat="skill in skills">
+                                        <div class="price-slider">
+                                            <h4 class="great">{{skill.name}} ({{skill.score}})</h4>
 
-                                <div class="form-pricing form-horizontal" ng-repeat="skill in skills">
-                                    <div class="price-slider">
-                                        <h4 class="great">{{skill.name}} ({{skill.score}})</h4>
+                                            <rzslider rz-slider-model="skill.score"></rzslider>
 
-                                        <rzslider rz-slider-model="skill.score"></rzslider>
+                                        </div>
 
                                     </div>
 
                                 </div>
-
                             </div>
-                        </div>
 
-                        <div ng-if="message.length" class="alert alert-danger" role="alert" id="error" ng-bind="message"></div>
+                            <div ng-if="step == 4">
 
-                        <div class="row" style="padding-top: 20px">
-                            <div class="form-group text-center">
-                                <button id="previous" name="previous" class="btn btn-default"
-                                        ng-disabled="isFirst()" ng-click="previous()" ng-show="!loading">
-                                    Anterior
-                                </button>
-                                <button id="next" name="next" class="btn btn-primary"
-                                        ng-if="!isLast()" ng-disabled="isLast()" ng-click="next()" ng-show="!loading">
-                                    Próximo
-                                </button>
-                                <button id="signup" name="signup" class="btn btn-primary"
-                                        ng-if="isLast()" ng-click="do_signup(input)" ng-show="!loading">
-                                    Concluir cadastro
-                                </button>
-                                <i class="fa fa-spin fa-circle-o-notch" ng-show="loading"></i>
+                                <div class="row">
+                                    <h3>Disponibilidade</h3>
+                                </div>
+
+                                <div class="row" style="margin-top: 15px;">
+                                    <div class="col-sm-12">
+                                        <p>Escolha a seguir o período que você estará disponível para que possamos
+                                            entrar em contato com alguma proposta de projeto.</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="control-group col-xs-12 col-sm-4 col-md-3">
+                                        <div class="controls">
+                                            <input type="text" id="availability" name="availability"
+                                                   class="form-control time-control" ng-model="input.availability"
+                                                   daterangepicker/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top: 15px;">
+                                    <div class="col-sm-12">
+                                        <p>Escolha a seguir os dias de semana que você teria disponibilidade para
+                                            desenvolver nossos projetos.</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="seven-cols col-xs-12 col-sm-12">
+                                        <div class="col-sm-1 col-xs-6 col-md-1">
+                                            <div ng-class="{ 'selected-day' : selectedSun }">
+                                                <label class="label" ng-click="toogleSun()"
+                                                       ng-class="(selectedSun) ? 'label-primary' : 'label-default'">Domingo</label>
+                                                <div class="clock-row" ng-show="selectedSun">
+                                                    <div class="control-group">
+                                                        <label class="control-label">De</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="startSun"
+                                                                   id="startSun" ng-model="input.startSun" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endSun">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clock-row" ng-show="selectedSun">
+                                                    <div class="control-group">
+                                                        <label class="control-label">Até</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="endSun"
+                                                                   id="endSun" ng-model="input.endSun" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startSun">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1 col-xs-6 col-md-1">
+                                            <div ng-class="{ 'selected-day' : selectedMon }">
+                                                <label class="label" ng-click="toogleMon()"
+                                                       ng-class="(selectedMon) ? 'label-primary' : 'label-default'">Segunda</label>
+                                                <div class="clock-row" ng-show="selectedMon">
+                                                    <div class="control-group">
+                                                        <label class="control-label">De</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="startMon"
+                                                                   id="startMon" ng-model="input.startMon" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endMon">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clock-row" ng-show="selectedMon">
+                                                    <div class="control-group">
+                                                        <label class="control-label">Até</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="endMon"
+                                                                   id="endMon" ng-model="input.endMon" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startMon">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1 col-xs-6 col-md-1">
+                                            <div ng-class="{ 'selected-day' : selectedTue }">
+                                                <label class="label" ng-click="toogleTue()"
+                                                       ng-class="(selectedTue) ? 'label-primary' : 'label-default'">Terça</label>
+                                                <div class="clock-row" ng-show="selectedTue">
+                                                    <div class="control-group">
+                                                        <label class="control-label">De</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="startTue"
+                                                                   id="startTue" ng-model="input.startTue" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endTue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clock-row" ng-show="selectedTue">
+                                                    <div class="control-group">
+                                                        <label class="control-label">Até</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="endTue"
+                                                                   id="endTue" ng-model="input.endTue" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startTue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1 col-xs-6 col-md-1">
+                                            <div ng-class="{ 'selected-day' : selectedWed }">
+                                                <label class="label" ng-click="toogleWed()"
+                                                       ng-class="(selectedWed) ? 'label-primary' : 'label-default'">Quarta</label>
+                                                <div class="clock-row" ng-show="selectedWed">
+                                                    <div class="control-group">
+                                                        <label class="control-label">De</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="startWed"
+                                                                   id="startWed" ng-model="input.startWed" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endWed">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clock-row" ng-show="selectedWed">
+                                                    <div class="control-group">
+                                                        <label class="control-label">Até</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="endWed"
+                                                                   id="endWed" ng-model="input.endWed" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startWed">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1 col-xs-6 col-md-1">
+                                            <div ng-class="{ 'selected-day' : selectedThu }">
+                                                <label class="label" ng-click="toogleThu()"
+                                                       ng-class="(selectedThu) ? 'label-primary' : 'label-default'">Quinta</label>
+                                                <div class="clock-row" ng-show="selectedThu">
+                                                    <div class="control-group">
+                                                        <label class="control-label">De</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="startThu"
+                                                                   id="startThu" ng-model="input.startThu" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endThu">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clock-row" ng-show="selectedThu">
+                                                    <div class="control-group">
+                                                        <label class="control-label">Até</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="endThu"
+                                                                   id="endThu" ng-model="input.endThu" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startThu">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1 col-xs-6 col-md-1">
+                                            <div ng-class="{ 'selected-day' : selectedFri }">
+                                                <label class="label" ng-click="toogleFri()"
+                                                       ng-class="(selectedFri) ? 'label-primary' : 'label-default'">Sexta</label>
+                                                <div class="clock-row" ng-show="selectedFri">
+                                                    <div class="control-group">
+                                                        <label class="control-label">De</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="startFri"
+                                                                   id="startFri" ng-model="input.startFri" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endFri">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clock-row" ng-show="selectedFri">
+                                                    <div class="control-group">
+                                                        <label class="control-label">Até</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="endFri"
+                                                                   id="endFri" ng-model="input.endFri" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-after="startFri">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1 col-xs-6 col-md-1">
+                                            <div ng-class="{ 'selected-day' : selectedSat }">
+                                                <label class="label" ng-click="toogleSat()"
+                                                       ng-class="(selectedSat) ? 'label-primary' : 'label-default'">Sábado</label>
+                                                <div class="clock-row" ng-show="selectedSat">
+                                                    <div class="control-group">
+                                                        <label class="control-label">De</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="startSat"
+                                                                   id="startSat" ng-model="input.startSat" clockpicker ng-readonly="true"
+                                                                   defaultValue="08:00" data-after="endSat">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clock-row" ng-show="selectedSat">
+                                                    <div class="control-group">
+                                                        <label class="control-label">Até</label>
+                                                        <div class="controls">
+                                                            <input type="text" class="form-control" name="endSat"
+                                                                   id="endSat" ng-model="input.endSat" clockpicker ng-readonly="true"
+                                                                   defaultValue="18:00" data-before="startSat">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                    </fieldset>
-                </form>
+                            <div ng-if="message.length" class="alert alert-danger" role="alert" id="error"
+                                 ng-bind="message"></div>
 
-                <div class="jumbotron" ng-if="step == 4">
+                            <div class="row" style="padding-top: 20px">
+                                <div class="form-group text-center">
+                                    <button id="previous" name="previous" class="btn btn-default"
+                                            ng-disabled="isFirst()" ng-click="previous()" ng-show="!loading">
+                                        Anterior
+                                    </button>
+                                    <button id="next" name="next" class="btn btn-primary"
+                                            ng-if="!isLast()" ng-disabled="isLast()" ng-click="next()"
+                                            ng-show="!loading">
+                                        Próximo
+                                    </button>
+                                    <button id="signup" name="signup" class="btn btn-primary"
+                                            ng-if="isLast()" ng-click="do_signup(input)" ng-show="!loading">
+                                        Concluir cadastro
+                                    </button>
+                                    <i class="fa fa-spin fa-circle-o-notch" ng-show="loading"></i>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="jumbotron" ng-if="isDone()">
                     <div class="row">
                         <div class="col-lg-offset-2 col-lg-8">
                             <h2 id="message">Cadastro realizado</h2>
 
                             <p class="lead">O SADE (Sistema de Acompanhamento de Desenvolvedores Externos). É o banco de
-                                desenvolvedores da Conpec. Por meio dele selecionamos desenvolvedores para nossos projetos.</p>
+                                desenvolvedores da Conpec. Por meio dele selecionamos desenvolvedores para nossos
+                                projetos.</p>
                         </div>
                     </div>
                 </div>

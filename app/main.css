@@ -109,6 +109,10 @@ h6 {
   border-radius: 4px;
   padding: 20px; }
 
+.control-group {
+  margin-bottom: 15px;
+}
+
 .stepwizard-step p {
   margin-top: 10px; }
 
@@ -236,7 +240,7 @@ ul.c-controls li a:hover {
   background: #E9E9E9;
   border-radius: 10px;
   padding: 40px 15px;
-  width: 500px; }
+  max-width: 500px; }
 
 .ui-widget-content {
   border: 1px solid #bdc3c7;
@@ -368,3 +372,40 @@ html, body {
 
 body {
   background-color: #EAEAEA; }
+
+.seven-cols {
+  text-align: center;
+}
+
+.selected-day {
+  background-color: #eee;
+  border-radius: 4px;
+  padding: 0 4px 1px 4px;
+}
+
+.seven-cols > div {
+  padding-right: 5px !important;
+  padding-left: 5px !important;
+  min-height: 169px;
+  padding-bottom: 15px;
+}
+
+.seven-cols .label {
+  cursor: pointer;
+}
+
+.time-control, .clock-row input {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .seven-cols .col-md-1,
+  .seven-cols .col-sm-1 {
+    width: 14.285714285714285714285714285714%;
+    *width: 14.285714285714285714285714285714%;
+  }
+}
+
+.label-primary {
+  background-color: #E8781A !important;
+}

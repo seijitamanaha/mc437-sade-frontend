@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="sade" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="sade" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="sade" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="sade" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="pt" ng-app="sade" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="pt" ng-app="sade" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="pt" ng-app="sade" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="pt" ng-app="sade" class="no-js"> <!--<![endif]-->
 <head>
 
   <meta charset="utf-8">
@@ -14,11 +14,12 @@
   <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="components/html5-boilerplate/dist/css/main.css">
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" href="components/angularjs-slider/dist/rzslider.min.css">
   <link rel="stylesheet" href="main.css">
-
-  <script src="components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <link rel="stylesheet" href="components/bootstrap-daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+  <link rel="stylesheet" href="components/clockpicker/dist/bootstrap-clockpicker.min.css">
 
 </head>
 
@@ -37,8 +38,13 @@
   </div>
 
   <!--Plugins-->
+  <script src="components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
   <script src="components/jquery/dist/jquery.min.js"></script>
+  <script src="components/moment/min/moment.min.js"></script>
   <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="components/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <script src="components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="components/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
 
   <!--AngularJS-->
   <script src="components/angular/angular.min.js"></script>
@@ -46,6 +52,7 @@
   <script src="components/ngstorage/ngStorage.min.js"></script>
   <script src="components/angular-input-masks/angular-input-masks-standalone.min.js"></script>
   <script src="components/angularjs-slider/dist/rzslider.min.js"></script>
+  <script src="components/angular-ui-validate/dist/validate.js"></script>
 
   <!--Main-->
   <script src="app.js"></script>

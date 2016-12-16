@@ -1,124 +1,152 @@
 'use strict';
 
 angular.module('sade')
-  .controller('ProfileCtrl', ['$scope', '$User', function ($scope, $User) {
+    .controller('ProfileCtrl', ['$scope', '$User', '$route', function ($scope, $User, $route) {
 
-    var model = {};
-    
-    $scope.loading = true;
-    $User.getUser().then(function(response) {
-      $scope.loading = false;
-      console.log(response.object);
-      $scope.user_data = response.object;
-      $scope.skills = $scope.user_data.skills.map(function (x) {
-        return {
-          id: x.id,
-          name: x.name,
-          value: x.score
+        if(!$User.me()) {
+          $scope.path('/');
         }
-      });
-      $scope.resetForm();
-    }).catch(function(error){
-      if(error.data && error.data.message == 'Usuário deslogado!') {
-        $User.logout();
-      }
-      $scope.loading = false;
-      console.log(error);
-    });
 
-    $scope.PROFILE = 1;
-    $scope.SKILLS = 2;
+        var model = {};
 
-    $scope.slider = {
-      value: 0,
-      options: {
-        floor: 0,
-        ceil: 10
-      }
-    };
+        $scope.message = '';
 
-    $scope.input = {};
+        $scope.loading = true;
+        $User.getUser().then(function (response) {
+            $scope.loading = false;
+            $scope.user_data = response.object;
+            $scope.skills = $scope.user_data.skills.map(function (x) {
+                return {
+                    id: x.id,
+                    name: x.name,
+                    value: x.score
+                }
+            });
+            $scope.resetForm();
+        }).catch(function (error) {
+            if (error.data && error.data.message == 'Usuário deslogado!') {
+                $User.logout();
+            }
+            else {
+                $scope.message = 'Não foi possível carregar os dados do usuário';
+            }
+            $scope.loading = false;
+        });
 
-    $scope.tab = $scope.PROFILE;
-    $scope.editMode = false;
+        $scope.PROFILE = 1;
+        $scope.SKILLS = 2;
 
-    $scope.message = '';
-    $scope.loading = false;
+        $scope.slider = {
+            value: 0,
+            options: {
+                floor: 0,
+                ceil: 10
+            }
+        };
 
-    $scope.showProfileTab = function () {
-      $scope.tab = $scope.PROFILE;
-      $scope.setEditMode(false);
-    };
+        $scope.input = {};
 
-    $scope.showSkillsTab = function () {
-      $scope.tab = $scope.SKILLS;
-      $scope.setEditMode(false);
-    };
+        $scope.tab = $scope.PROFILE;
+        $scope.editMode = false;
 
-    $scope.isProfileTab = function () {
-      return $scope.tab == $scope.PROFILE;
-    };
+        $scope.showProfileTab = function () {
+            $scope.tab = $scope.PROFILE;
+            $scope.setEditMode(false);
+        };
 
-    $scope.isSkillsTab = function () {
-      return $scope.tab == $scope.SKILLS;
-    };
+        $scope.showSkillsTab = function () {
+            $scope.tab = $scope.SKILLS;
+            $scope.setEditMode(false);
+        };
 
-    $scope.setEditMode = function (b) {
-      $scope.editMode = b;
+        $scope.isProfileTab = function () {
+            return $scope.tab == $scope.PROFILE;
+        };
 
-      // reseta form
-      if (b == false) {
-        $scope.resetForm();
-      }
-    };
+        $scope.isSkillsTab = function () {
+            return $scope.tab == $scope.SKILLS;
+        };
 
-    $scope.resetForm = function () {
+        $scope.setEditMode = function (b) {
+            $scope.editMode = b;
 
-      console.log($scope.user_data);
+            // reseta form
+            if (b == false) {
+                $scope.resetForm();
+            }
+        };
 
-      $scope.input = {
-        rg: $scope.user_data.rg,
-        curriculum: $scope.user_data.curriculum,
-        phone: $scope.user_data.phone,
-        course: $scope.user_data.course,
-        institution: $scope.user_data.institution,
-        address: $scope.user_data.address,
-        howMet: $scope.user_data.howMet,
-        skills: $scope.user_data.skills
-      }
-    };
+        $scope.resetForm = function () {
 
-    $scope.isEditMode = function () {
-      return $scope.editMode;
-    };
+            $scope.form.rg.$touched = false;
+            $scope.form.curriculum.$touched = false;
+            $scope.form.phone.$touched = false;
+            $scope.form.course.$touched = false;
+            $scope.form.institution.$touched = false;
+            $scope.form.address.$touched = false;
+            $scope.form.howMet.$touched = false;
 
-    $scope.do_update = function (input) {
+            $scope.input = {
+                rg: $scope.user_data.rg,
+                curriculum: $scope.user_data.curriculum,
+                phone: $scope.user_data.phone,
+                course: $scope.user_data.course,
+                institution: $scope.user_data.institution,
+                address: $scope.user_data.address,
+                howMet: $scope.user_data.howMet,
+                skills: $scope.user_data.skills
+            }
 
-      $scope.message = '';
-      $scope.loading = true;
+            $scope.saveAttemp = false;
+        };
 
-      //TODO
-      var data = {
-        name: input.name,
-        mail: input.email,
-        cpf: input.cpf,
-        password: input.password,
-        rg: input.rg,
-        curriculum: input.curriculum,
-        phone: input.phone,
-        course: input.course,
-        institution: input.institution,
-        address: input.address,
-        howMet: input.howMet,
-        skills: $scope.skills
-      };
+        $scope.isEditMode = function () {
+            return $scope.editMode;
+        };
 
-      $User.signup(data).then(function () {
-        $scope.loading = false;
-      }).catch(function () {
-        $scope.loading = false;
-        $scope.message = 'Falha ao atualizar ' + (($scope.isProfileTab()) ? 'os dados pessoais.' : 'as habilidades.');
-      });
-    };
+        $scope.match = function (value1, value2) {
+            if (!value1) value1 = '';
+            if (!value2) value2 = '';
 
-  }]);
+            return value1 + '' == value2 + '';
+        }
+
+        $scope.do_update = function (input) {
+
+            if ($scope.form.$valid) {
+
+                $scope.message = '';
+                $scope.loading = true;
+
+                //TODO
+                var data = {
+                    id: $User.me().id,
+                    name: input.name,
+                    mail: input.email,
+                    cpf: input.cpf,
+                    password: input.password,
+                    rg: input.rg,
+                    curriculum: input.curriculum,
+                    phone: input.phone,
+                    course: input.course,
+                    institution: input.institution,
+                    address: input.address,
+                    howMet: input.howMet,
+                    skills: $scope.skills,
+                    loginToken: null
+                };
+
+                $User.update(data).then(function () {
+                    $route.reload();
+                    $scope.loading = false;
+                }).catch(function () {
+                    $scope.loading = false;
+                    $scope.message = 'Falha ao atualizar ' + (($scope.isProfileTab()) ? 'os dados pessoais.' : 'as habilidades.');
+                });
+            }
+            else {
+                $scope.saveAttemp = true;
+            }
+        };
+
+    }]);
