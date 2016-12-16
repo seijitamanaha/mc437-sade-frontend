@@ -22,7 +22,7 @@
                     </ul>
                 </div>
 
-                <form role="form" name="form" class="form-profile form-horizontal" novalidate>
+                <form role="form" name="form" class="form-profile form-horizontal" novalidate  ng-submit="do_update(input)">
                     <fieldset>
                         <div ng-class="{ 'hide' : !isProfileTab() }">
                             <div class="row">
@@ -177,12 +177,12 @@
                                         ng-show="!loading">
                                     Editar
                                 </button>
-                                <button id="cancel" name="cancel" class="btn btn-default"
+                                <a href="" id="cancel" name="cancel" class="btn btn-default"
                                         ng-if="isEditMode()" ng-click="setEditMode(false); reset" ng-show="!loading">
                                     Cancelar
-                                </button>
-                                <button id="update" name="update" class="btn btn-primary"
-                                        ng-if="isEditMode()" ng-click="do_update(input)" ng-show="!loading">
+                                </a>
+                                <button id="update" name="update" class="btn btn-primary" type="submit"
+                                        ng-if="isEditMode()" ng-show="!loading">
                                     Salvar
                                 </button>
                                 <i class="fa fa-spin fa-circle-o-notch" ng-show="loading"></i>
