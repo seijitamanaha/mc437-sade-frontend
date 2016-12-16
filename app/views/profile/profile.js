@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('sade')
-    .controller('ProfileCtrl', ['$scope', '$User', function ($scope, $User) {
+    .controller('ProfileCtrl', ['$scope', '$User', '$route', function ($scope, $User, $route) {
 
         if(!$User.me()) {
           $scope.path('/');
@@ -114,13 +114,13 @@ angular.module('sade')
         $scope.do_update = function (input) {
 
             if ($scope.form.$valid) {
-                console.log('SAVE');
 
                 $scope.message = '';
                 $scope.loading = true;
 
                 //TODO
                 var data = {
+                    id: $User.me().id,
                     name: input.name,
                     mail: input.email,
                     cpf: input.cpf,
@@ -137,6 +137,7 @@ angular.module('sade')
                 };
 
                 $User.update(data).then(function () {
+                    $route.reload();
                     $scope.loading = false;
                 }).catch(function () {
                     $scope.loading = false;
