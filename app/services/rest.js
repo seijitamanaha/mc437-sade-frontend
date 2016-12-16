@@ -17,7 +17,7 @@ angular
 
         opt = opt || {};
         /** API URL Definition */
-        opt.base_url = opt.base_url || 'http://177.220.85.233:8437/sade';
+        opt.base_url = opt.base_url || 'http://177.220.85.241:8437/sade';
 
         var cache = {};
 

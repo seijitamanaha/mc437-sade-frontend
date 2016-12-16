@@ -177,6 +177,41 @@ angular
       };
 
       /**
+       * Updates the user specified in the data
+       *
+       * @param data
+       * @param {Function} [fn] The legacy callback
+       *
+       * @returns {Promise}
+       */
+      UserRestService.prototype.update = function (data, fn) {
+
+        var self = this;
+        var q = $q.defer();
+        fn = fn || angular.noop;
+        
+        data.loginToken = self.cache.me.loginToken || null;
+
+        // Perform the post request
+        self.rest.post('/user/update', data).then(function (response) {
+
+          console.log(response);
+
+          q.resolve(response);
+          fn(null, response);
+
+        }, function (error) {
+
+          q.reject(error);
+          fn(error);
+
+        });
+
+        return q.promise;
+
+      };
+
+      /**
        * Gets the skills data
        *
        * @param {Function} [fn] The legacy callback
@@ -201,8 +236,6 @@ angular
           fn(error);
 
         });
-
-
 
         return q.promise;
 

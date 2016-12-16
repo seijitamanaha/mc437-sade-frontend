@@ -31,7 +31,7 @@
                             <p class="hidden-xs">Habilidades</p>
                         </div>
                         <div class="process-step">
-                            <button type="button" ng-class="(step == 4) ? 'btn-success' : 'btn-default'"
+                            <button type="button" ng-class="(step >= 4) ? 'btn-success' : 'btn-default'"
                                     class="btn btn-circle" disabled="disabled">
                                 <i class="fa fa-calendar"></i></button>
                             <p class="hidden-xs">Disponibilidade</p>
@@ -152,7 +152,7 @@
                                         <div class="controls">
                                             <input id="rg" name="rg" type="text"
                                                    ng-model="input.rg" placeholder="Número do RG"
-                                                   class="form-control required" required>
+                                                   class="form-control required" required maxlength="15">
                                             <span class="label label-danger"
                                                   ng-show="(form.rg.$touched || saveAttemp) && form.rg.$invalid">RG é obrigatório.</span>
                                         </div>

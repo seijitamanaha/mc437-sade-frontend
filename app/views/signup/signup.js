@@ -145,6 +145,7 @@ angular.module('sade')
                 }
             });
 
+
             var data = {
                 name: input.name,
                 mail: input.email,
@@ -157,9 +158,7 @@ angular.module('sade')
                 institution: input.instituicao,
                 address: input.endereco,
                 howMet: input.howMet,
-                skills: $scope.skills,
-                availablePeriod: availablePeriod,
-                availableDays: availableDays
+                skills: $scope.skills
             };
 
             $User.signup(data).then(function () {

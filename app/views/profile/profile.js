@@ -3,6 +3,10 @@
 angular.module('sade')
     .controller('ProfileCtrl', ['$scope', '$User', function ($scope, $User) {
 
+        if(!$User.me()) {
+          $scope.path('/');
+        }
+
         var model = {};
 
         $scope.message = '';
@@ -10,7 +14,6 @@ angular.module('sade')
         $scope.loading = true;
         $User.getUser().then(function (response) {
             $scope.loading = false;
-            //console.log(response.object);
             $scope.user_data = response.object;
             $scope.skills = $scope.user_data.skills.map(function (x) {
                 return {
@@ -129,10 +132,11 @@ angular.module('sade')
                     institution: input.institution,
                     address: input.address,
                     howMet: input.howMet,
-                    skills: $scope.skills
+                    skills: $scope.skills,
+                    loginToken: null
                 };
 
-                $User.signup(data).then(function () {
+                $User.update(data).then(function () {
                     $scope.loading = false;
                 }).catch(function () {
                     $scope.loading = false;
